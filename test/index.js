@@ -1,4 +1,4 @@
-var vhCkeck = require('../index');
+var vhCkeck = require('../vh-check.js');
 console.log(vhCkeck)
 var test = vhCkeck();
 var p = document.createElement('p');

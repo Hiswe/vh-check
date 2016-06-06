@@ -16,10 +16,17 @@ https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13
 
 ## use
 
+```
+npm install hiswe/vh-check
+```
+
+or juste copy the `vh-check.js` file for global variable
+
 ```js
 
-var vhCheck = require('vh-check');
-vhCheck()
+var vhCheck   = require('vh-check');
+var isNeeded  = vhCheck();
+// isNeeded will be true || false
 
 ```
 
@@ -30,6 +37,8 @@ this will print a style tag like this if needed:
   :root { --vh-offset: 49px; }
 </style>
 ```
+
+The CSS var will be updated on orientation change
 
 ### configuration
 
@@ -68,8 +77,11 @@ vhCheck()
 }
 /* use the offset to be sure that 100vh is fitting the whole screen */
 main {
+  /* for browser supporting VH without buggy behaviour & no supporting of CSS var */
   min-height: calc(100vh);
   /* make sure that CSS var are supported */
+  /* buggyFill will work on iOS 9.3+ only */
+  /* will degrade on a buggy 100vh on older version of iOS */
   @supports (height: var(--vh-offset)) {
     min-height: calc(100vh - var(--vh-offset));
   }
