@@ -1,0 +1,33 @@
+{
+  "name": "ios-vh",
+  "version": "1.0.0",
+  "description": "iOS vh buggyfill",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify ./test/index.js -o ./test/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hiswe/ios-vh.git"
+  },
+  "keywords": [
+    "ios",
+    "css",
+    "vh",
+    "vertical-height",
+    "buggyfill"
+  ],
+  "author": "Hiswe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hiswe/ios-vh/issues"
+  },
+  "homepage": "https://github.com/Hiswe/ios-vh#readme",
+  "devDependencies": {
+    "browserify": "^13.0.1"
+  }
+}

@@ -1,20 +1,14 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['exports', 'vhCkeck'], factory);
-  } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
-    // CommonJS
-    factory(exports, require('vhCkeck'));
+    define([], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
   } else {
-    // Browser globals
-    factory(root);
+    root.vhCheck = factory();
   }
-}(this, function (exports, vhCkeck) {
+}(this, function () {
   'use strict';
-  // use vhCkeck in some fashion.
-  // attach properties to the exports object to define
-  // the exported module properties.
-  exports.vhCkeck = function (cssVarName) {
+  return function vhCheck(cssVarName) {
     // configurable CSS var
     cssVarName = typeof cssVarName === 'string' ? cssVarName : 'vh-offset';
     // test with fixed
@@ -35,8 +29,8 @@
     // usefullness check
     if (!offset) return false;
     var style = document.createElement('style');
-    style.innerHTML = ':root { --' + options.cssVarName + ': ' + offset + 'px; }';
+    style.innerHTML = ':root { --' + cssVarName + ': ' + offset + 'px; }';
     document.body.insertBefore(style, document.body.firstChild);
     return true
-  };
+  }
 }));
