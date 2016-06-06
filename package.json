@@ -1,5 +1,5 @@
 {
-  "name": "ios-vh",
+  "name": "vh-check",
   "version": "1.0.0",
   "description": "iOS vh buggyfill",
   "main": "index.js",
