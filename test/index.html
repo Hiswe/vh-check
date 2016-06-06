@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="../index.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      (function () {
+        var test = vhCkeck('vh-test');
+        var p = document.createElement('p');
+        p.textContent = !test ? 'not needed' : 'needed';
+        document.body.appendChild(p);
+      }());
+    </script>
+  </body>
+</html>
