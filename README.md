@@ -1,20 +1,18 @@
 # VH CHECK
 
-Safari iOS has bug about computing the CSS `100vh` value.
+Safari iOS has a bug about computing the CSS `100vh` value.
 
 This script will measure the difference and put it in a CSS var.
 
 ### why not use viewport-units-buggyfill?
 
-It's a very good job:
+It's doing a very good job:
 
 https://github.com/rodneyrehm/viewport-units-buggyfill
 
 But it has some problems with media-queries:
 
 https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13
-
-And I needed media-queries
 
 ## use
 
@@ -85,6 +83,6 @@ main {
 
 #### More details:
 
-- [**vh** – should be IE9+](http://caniuse.com/#search=vh). Only iOS7+ safari has that buggy behaviour
-- [**@supports** – IE Edge +](http://caniuse.com/#feat=css-supports-api). In my example < IE Edge will fallback to vh without CSS var. Because this bad behaviour only in iOS, this will work :)
+- [**vh** – should be IE9+](http://caniuse.com/#search=vh). Only iOS7+ has that buggy behaviour
+- [**@supports** – IE Edge +](http://caniuse.com/#feat=css-supports-api). In my example < IE Edge will fallback to vh without CSS var. Because this behave badly only in iOS, this will work :)
 - [**CSS Variables** – iOS 9.3+](http://caniuse.com/#feat=css-variables). not IE and not < iOS 9.3. So this buggyfill will work only on the latest version of iOS :S
