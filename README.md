@@ -75,18 +75,34 @@ vhCheck()
 :root {
   --vh-offset: 0px;
 }
-/* use the offset to be sure that 100vh is fitting the whole screen */
+/* for browser supporting VH without buggy behaviour & no supporting of CSS var */
 main {
-  /* for browser supporting VH without buggy behaviour & no supporting of CSS var */
   min-height: calc(100vh);
-  /* make sure that CSS var are supported */
-  /* buggyFill will work on iOS 9.3+ only */
-  /* will degrade on a buggy 100vh on older version of iOS */
-  @supports (height: var(--vh-offset)) {
+}
+/* make sure that CSS var are supported */
+/* buggyFill will work on iOS 9.3+ only */
+/* will degrade on a buggy 100vh on older version of iOS */
+@supports (height: var(--vh-offset)) {
+  main {
     min-height: calc(100vh - var(--vh-offset));
   }
 }
 
+```
+
+##### note: it can be written more consisely on any CSS processor that support nesting
+
+```stylus
+
+:root {
+  --vh-offset: 0px;
+}
+main {
+  min-height: calc(100vh);
+  @supports (height: var(--vh-offset)) {
+    min-height: calc(100vh - var(--vh-offset));
+  }
+}
 ```
 
 ## support

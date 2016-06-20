@@ -1,2 +1,3 @@
 node_modules
 test/bundle.js
+npm-debug.log
