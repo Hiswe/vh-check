@@ -14,21 +14,36 @@ But it has some problems with media-queries:
 
 https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13
 
-## use
+## Use
+
+##### as a global variable
+
+Download the `vh-check.js` file and then:
+
+```html
+<script src="/vh-check.js"></script>
+<script>
+  (function () {
+    // initialize the test
+    var isNeeded = vhCheck('vh-test');
+  }());
+</script>
+
+```
+
+##### commonJS
 
 ```
 npm install hiswe/vh-check
 ```
 
-or juste copy the `vh-check.js` file for global variable
-
 ```js
-
 var vhCheck   = require('vh-check');
-var isNeeded  = vhCheck();
 // isNeeded will be true || false
-
+var isNeeded  = vhCheck();
 ```
+
+### Result
 
 this will print a style tag like this if needed:
 
@@ -62,10 +77,7 @@ will print:
 #### In your javascript
 
 ```js
-
-var vhCheck = require('vh-check');
 vhCheck()
-
 ```
 
 #### In your CSS
