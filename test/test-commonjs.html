@@ -3,21 +3,26 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
       :root {
         --vh-offset: 0px;
       }
-      body {
-        min-height: calc(100vh);
-        background: #efefef;
+      html {
+        background: white;
       }
-      @supports (height: var(--vh-offset)) {
-        body {
-          min-height: calc(100vh - var(--vh-offset));
-          background: #fff;
-        }
-        body::after {
-          content: '@supports fallback';
-        }
+      body {
+        background: #efefef;
+        margin: 0;
+        padding: 1em;
+        /* center any content */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* force height */
+        min-height: calc(100vh);
+        min-height: calc(100vh - var(--vh-offset));
       }
       body style {
         display: block;

@@ -87,33 +87,13 @@ vhCheck()
 :root {
   --vh-offset: 0px;
 }
-/* for browser supporting VH without buggy behaviour & no supporting of CSS var */
+
 main {
+  /* for browser supporting VH without buggy behaviour & no supporting of CSS var */
   min-height: calc(100vh);
-}
-/* make sure that CSS var are supported */
-/* buggyFill will work on iOS 9.3+ only */
-/* will degrade on a buggy 100vh on older version of iOS */
-@supports (height: var(--vh-offset)) {
-  main {
-    min-height: calc(100vh - var(--vh-offset));
-  }
-}
-
-```
-
-##### note: it can be written more consisely on any CSS processor that support nesting
-
-```stylus
-
-:root {
-  --vh-offset: 0px;
-}
-main {
-  min-height: calc(100vh);
-  @supports (height: var(--vh-offset)) {
-    min-height: calc(100vh - var(--vh-offset));
-  }
+  /* buggyFill will work on iOS 9.3+ only */
+  /* will degrade on a buggy 100vh on older version of iOS */
+  min-height: calc(100vh - var(--vh-offset));
 }
 ```
 
@@ -124,5 +104,4 @@ main {
 #### More details:
 
 - [**vh** – should be IE9+](http://caniuse.com/#search=vh). Only iOS7+ has that buggy behaviour
-- [**@supports** – IE Edge +](http://caniuse.com/#feat=css-supports-api). In my example < IE Edge will fallback to vh without CSS var. Because this behave badly only in iOS, this will work :)
 - [**CSS Variables** – iOS 9.3+](http://caniuse.com/#feat=css-variables). not IE and not < iOS 9.3. So this buggyfill will work only on the latest version of iOS :S
