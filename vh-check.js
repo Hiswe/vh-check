@@ -28,19 +28,21 @@
     return offset;
   }
 
+  function updateCssVar(cssVarName, offset) {
+    document.documentElement.style.setProperty('--' + cssVarName, offset + 'px');
+  }
+
   return function vhCheck(cssVarName) {
     // configurable CSS var
     cssVarName = typeof cssVarName === 'string' ? cssVarName : 'vh-offset';
     var offset = testVh();
     // usefullness check
     if (!offset) return false;
-    var style = document.createElement('style');
-    style.innerHTML = ':root { --' + cssVarName + ': ' + offset + 'px; }';
-    document.body.insertBefore(style, document.body.firstChild);
+    updateCssVar(cssVarName, offset);
     // Listen for orientation changes
     window.addEventListener('orientationchange', function() {
       var newOffset = testVh();
-      style.innerHTML = ':root { --' + cssVarName + ': ' + newOffset + 'px; }';
+      updateCssVar(cssVarName, newOffset);
     }, false);
     return true;
   }

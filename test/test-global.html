@@ -6,9 +6,6 @@
       * {
         box-sizing: border-box;
       }
-      :root {
-        --vh-offset: 0px;
-      }
       html {
         background: white;
       }
@@ -30,14 +27,18 @@
         padding: 1em;
       }
     </style>
-    <script type="text/javascript" src="../vh-check.js"></script>
+    <script type="text/javascript" src="./vh-check.js"></script>
   </head>
   <body>
     <script type="text/javascript">
       (function () {
-        var test = vhCheck('vh-test');
+        var test = vhCheck();
         var p = document.createElement('p');
-        p.textContent = !test ? 'not needed' : 'needed';
+        var message = !test ? 'not needed. Gap is: ' : 'needed. Gap is: ';
+        var value = document.documentElement.style.getPropertyValue('--vh-offset');
+        value = value ? value : '0px';
+        message = message + value;
+        p.textContent = message;
         document.body.insertBefore(p, document.body.firstChild);
       }());
     </script>

@@ -45,12 +45,13 @@ var isNeeded  = vhCheck();
 
 ### Result
 
-this will print a style tag like this if needed:
+this will set a css `var` if needed:
 
-```html
-<style>
-  :root { --vh-offset: 49px; }
-</style>
+```css
+.offset {
+  height: var(--vh-offset);
+}
+
 ```
 
 The CSS var will be updated on orientation change
@@ -63,13 +64,12 @@ You can pass the CSS var name as a param to `vhCheck()`
 vhCheck('ios-gap')
 ```
 
-will print:
+In your CSS you will have to reference:
 
-
-```html
-<style>
-  :root { --ios-gap: 49px; }
-</style>
+```css
+main {
+  min-height: calc(100vh - var(--ios-gap));
+}
 ```
 
 ## example
@@ -83,14 +83,10 @@ vhCheck()
 #### In your CSS
 
 ```css
-/* declare a default fallback once */
-:root {
-  --vh-offset: 0px;
-}
-
 main {
   /* for browser supporting VH without buggy behaviour & no supporting of CSS var */
   min-height: calc(100vh);
+  /* calc will handle correctly an undefined css var */
   /* buggyFill will work on iOS 9.3+ only */
   /* will degrade on a buggy 100vh on older version of iOS */
   min-height: calc(100vh - var(--vh-offset));
@@ -105,3 +101,10 @@ main {
 
 - [**vh** – should be IE9+](http://caniuse.com/#search=vh). Only iOS7+ has that buggy behaviour
 - [**CSS Variables** – iOS 9.3+](http://caniuse.com/#feat=css-variables). not IE and not < iOS 9.3. So this buggyfill will work only on the latest version of iOS :S
+
+## demo
+
+- clone the project
+- npm install
+- npm test
+- go to `localhost:8080`

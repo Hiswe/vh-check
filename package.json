@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run build && cp ./vh-check.js ./test/vh-check.js && http-server ./test",
     "build": "browserify ./test/index.js -o ./test/bundle.js"
   },
   "repository": {
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/Hiswe/ios-vh#readme",
   "devDependencies": {
-    "browserify": "^13.0.1"
+    "browserify": "^13.0.1",
+    "http-server": "^0.9.0"
   }
 }
