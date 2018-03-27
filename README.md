@@ -8,7 +8,7 @@ This script will measure the difference and put it in a CSS var.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-# vh-check
+
 
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [Use](#use)

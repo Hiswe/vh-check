@@ -6,7 +6,7 @@
   "scripts": {
     "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
     "format-code": "prettier --single-quote --trailing-comma es5 src/index.js --write src/index.js",
-    "toc": "doctoc README.md --github",
+    "toc": "doctoc README.md --github --notitle",
     "build": "rollup --config",
     "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js",
     "prepublishOnly": "npm run toc && npm run build",
