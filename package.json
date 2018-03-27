@@ -6,10 +6,11 @@
   "scripts": {
     "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
     "format-code": "prettier --single-quote --trailing-comma es5 src/index.js --write src/index.js",
+    "toc": "doctoc README.md --github",
     "build": "rollup --config",
     "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js",
-    "prepublishOnly": "npm run build",
-    "release": "np --no-yarn"
+    "prepublishOnly": "npm run toc && npm run build",
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -35,5 +36,8 @@
     "prettier": "1.11.1",
     "rollup": "^0.57.1",
     "rollup-plugin-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "doctoc": "^1.3.1"
   }
 }
