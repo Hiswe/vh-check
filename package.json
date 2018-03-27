@@ -8,7 +8,7 @@
   },
   "scripts": {
     "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
-    "build": "rollup src/index.js --o vh-check.js -f umd --name vh-check",
+    "build": "rollup --config",
     "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js"
   },
   "repository": {
