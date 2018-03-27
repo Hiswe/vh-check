@@ -1,6 +1,6 @@
 {
   "name": "vh-check",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "iOS vh buggyfill",
   "main": "vh-check.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "rollup --config",
     "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js",
     "prepublishOnly": "npm run build",
-    "publish": "npx np"
+    "release": "np"
   },
   "repository": {
     "type": "git",
