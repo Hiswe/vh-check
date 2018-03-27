@@ -1,19 +1,14 @@
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define([], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    module.exports = factory();
-  } else {
-    root.vhCheck = factory();
-  }
-}(this, function () {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global['vh-check'] = factory());
+}(this, (function () { 'use strict';
 
   function testVh() {
     // test with fixed
-    var fixedTest = document.createElement('div')
-    fixedTest.style.cssText = 'position: fixed; top: 0; bottom: 0;'
-    document.documentElement.insertBefore(fixedTest, document.documentElement.firstChild)
+    var fixedTest = document.createElement('div');
+    fixedTest.style.cssText = 'position: fixed; top: 0; bottom: 0;';
+    document.documentElement.insertBefore(fixedTest, document.documentElement.firstChild);
     // test with vh
     var vhTest = document.createElement('div');
     vhTest.style.cssText = 'position: fixed; top: 0; height: 100vh';
@@ -32,7 +27,7 @@
     document.documentElement.style.setProperty('--' + cssVarName, offset + 'px');
   }
 
-  return function vhCheck(cssVarName) {
+  function vhCheck(cssVarName) {
     // configurable CSS var
     cssVarName = typeof cssVarName === 'string' ? cssVarName : 'vh-offset';
     var offset = testVh();
@@ -46,4 +41,7 @@
     }, false);
     return true;
   }
-}));
+
+  return vhCheck;
+
+})));

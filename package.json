@@ -8,8 +8,8 @@
   },
   "scripts": {
     "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
-    "build": "",
-    "build:demo": "browserify ./demo/index.js -o ./demo/bundle.js"
+    "build": "rollup src/index.js --o vh-check.js -f umd --name vh-check",
+    "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
   "homepage": "https://github.com/Hiswe/ios-vh#readme",
   "devDependencies": {
     "browserify": "^16.1.1",
-    "http-server": "^0.11.1"
+    "http-server": "^0.11.1",
+    "rollup": "^0.57.1"
   }
 }

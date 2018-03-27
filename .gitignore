@@ -2,3 +2,5 @@ node_modules
 demo/bundle.js
 demo/vh-check.js
 npm-debug.log
+yarn-debug.log
+vh-check.js
