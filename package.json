@@ -1,14 +1,15 @@
 {
   "name": "vh-check",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "iOS vh buggyfill",
   "main": "vh-check.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "npm run build && cp ./vh-check.js ./test/vh-check.js && http-server ./test",
-    "build": "browserify ./test/index.js -o ./test/bundle.js"
+    "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
+    "build": "",
+    "build:demo": "browserify ./demo/index.js -o ./demo/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -31,4 +32,5 @@
     "browserify": "^13.0.1",
     "http-server": "^0.9.0"
   }
+  "dependencies": {}
 }

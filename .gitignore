@@ -1,4 +1,4 @@
 node_modules
-test/bundle.js
-test/vh-check.js
+demo/bundle.js
+demo/vh-check.js
 npm-debug.log

@@ -83,6 +83,9 @@ vhCheck()
 #### In your CSS
 
 ```css
+:root {
+  --vh-offset: 0px;
+}
 main {
   /* for browser supporting VH without buggy behaviour & no supporting of CSS var */
   min-height: calc(100vh);
@@ -106,5 +109,5 @@ main {
 
 - clone the project
 - npm install
-- npm test
+- npm run demo
 - go to `localhost:8080`
