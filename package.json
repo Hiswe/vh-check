@@ -31,6 +31,8 @@
   "devDependencies": {
     "browserify": "^16.1.1",
     "http-server": "^0.11.1",
-    "rollup": "^0.57.1"
+    "lodash.merge": "^4.6.1",
+    "rollup": "^0.57.1",
+    "rollup-plugin-uglify": "^3.0.0"
   }
 }
