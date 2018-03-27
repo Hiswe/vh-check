@@ -8,6 +8,7 @@
   },
   "scripts": {
     "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
+    "format-code": "prettier --single-quote --trailing-comma es5 src/index.js --write src/index.js",
     "build": "rollup --config",
     "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js"
   },
@@ -32,6 +33,7 @@
     "browserify": "^16.1.1",
     "http-server": "^0.11.1",
     "lodash.merge": "^4.6.1",
+    "prettier": "1.11.1",
     "rollup": "^0.57.1",
     "rollup-plugin-uglify": "^3.0.0"
   }
