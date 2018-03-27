@@ -11,7 +11,7 @@
     "build": "rollup --config && npm run update-dist-folder",
     "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js",
     "prepublishOnly": "npm run toc && npm run build",
-    "release": "np --no-yarn"
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -32,13 +32,12 @@
   "homepage": "https://github.com/Hiswe/ios-vh#readme",
   "devDependencies": {
     "browserify": "^16.1.1",
+    "doctoc": "^1.3.1",
     "http-server": "^0.11.1",
     "lodash.merge": "^4.6.1",
     "prettier": "1.11.1",
     "rollup": "^0.57.1",
     "rollup-plugin-uglify": "^3.0.0"
   },
-  "dependencies": {
-    "doctoc": "^1.3.1"
-  }
+  "dependencies": {}
 }
