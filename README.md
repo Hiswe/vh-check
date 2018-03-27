@@ -34,7 +34,7 @@ Download the `vh-check.js` file and then:
 ##### commonJS
 
 ```
-npm install hiswe/vh-check
+npm install vh-check
 ```
 
 ```js
