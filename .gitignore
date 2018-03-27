@@ -3,5 +3,5 @@ demo/bundle.js
 demo/vh-check.js
 npm-debug.log
 yarn-error.log
-vh-check.js
-vh-check.dev.js
+/vh-check.js
+/vh-check.dev.js
