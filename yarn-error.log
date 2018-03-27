@@ -1,0 +1,63 @@
+Arguments: 
+  /Users/hiswe/.nvm/versions/node/v8.10.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js upgrade-interactive --latest
+
+PATH: 
+  /Users/hiswe/.rbenv/shims:/Users/hiswe/.nvm/versions/node/v8.10.0/bin:/usr/local/share/npm/bin:/opt/local/bin:/opt/local/sbin:/usr/local/git/bin/git:/usr/local/sbin:/Developer/usr/bin:/Users/hiswe/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/hiswe/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.10.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "vh-check",
+    "version": "1.0.2",
+    "description": "iOS vh buggyfill",
+    "main": "vh-check.js",
+    "directories": {
+      "test": "test"
+    },
+    "scripts": {
+      "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
+      "build": "",
+      "build:demo": "browserify ./demo/index.js -o ./demo/bundle.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Hiswe/ios-vh.git"
+    },
+    "keywords": [
+      "ios",
+      "css",
+      "vh",
+      "vertical-height",
+      "buggyfill"
+    ],
+    "author": "Hiswe",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/Hiswe/ios-vh/issues"
+    },
+    "homepage": "https://github.com/Hiswe/ios-vh#readme",
+    "devDependencies": {
+      "browserify": "^13.0.1",
+      "http-server": "^0.9.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: No lockfile in this directory. Run `yarn install` to generate one.
+      at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:89389:13
+      at <anonymous>
