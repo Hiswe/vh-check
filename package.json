@@ -3,14 +3,12 @@
   "version": "1.0.2",
   "description": "iOS vh buggyfill",
   "main": "vh-check.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
     "format-code": "prettier --single-quote --trailing-comma es5 src/index.js --write src/index.js",
     "build": "rollup --config",
-    "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js"
+    "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js",
+    "publish": "npx np"
   },
   "repository": {
     "type": "git",
@@ -24,7 +22,7 @@
     "buggyfill"
   ],
   "author": "Hiswe",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Hiswe/ios-vh/issues"
   },
