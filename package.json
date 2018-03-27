@@ -7,7 +7,7 @@
     "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
     "format-code": "prettier --single-quote --trailing-comma es5 src/index.js --write src/index.js",
     "toc": "doctoc README.md --github --notitle",
-    "update-dist-folder": "cp vh-check.js dist/vh-check.js && mv vh-check.min.js dist/vh-check.min.js",
+    "update-dist-folder": "cp vh-check.js dist/vh-check.js",
     "build": "rollup --config && npm run update-dist-folder",
     "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js",
     "prepublishOnly": "npm run toc && npm run build",

@@ -24,7 +24,7 @@ const npmConfig = merge({}, baseConfig, {
 
 const minConfig = merge({}, baseConfig, {
   output: {
-    file: `${ NAME }.min.js`,
+    file: `dist/${ NAME }.min.js`,
   },
   plugins: [
     uglify(),
