@@ -9,7 +9,7 @@
     "build": "rollup --config",
     "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js",
     "prepublishOnly": "npm run build",
-    "release": "np"
+    "release": "np --no-yarn"
   },
   "repository": {
     "type": "git",
