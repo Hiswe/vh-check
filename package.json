@@ -1,6 +1,6 @@
 {
   "name": "vh-check",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "iOS vh buggyfill",
   "main": "vh-check.js",
   "scripts": {
