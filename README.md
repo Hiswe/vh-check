@@ -40,7 +40,12 @@ https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13
 
 ### as a global variable
 
-Download the `vh-check.js` file from [the dist folder](https://github.com/Hiswe/vh-check/blob/master/dist/vh-check.js) and then:
+Download the `vh-check.js` file 
+
+- from [unpkg](https://unpkg.com/vh-check)  
+- or the minified version in [the dist folder](https://github.com/Hiswe/vh-check/blob/master/dist/vh-check.min.js)
+
+and then:
 
 ```html
 <script src="/vh-check.js"></script>
