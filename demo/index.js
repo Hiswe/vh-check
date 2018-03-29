@@ -1,4 +1,4 @@
-var vhCheck = require('../vh-check.js');
+var vhCheck = require('../dist/vh-check.js');
 var test = vhCheck();
 var p = document.createElement('p');
 var message = !test ? 'not needed. Gap is: ' : 'needed. Gap is: ';

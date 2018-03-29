@@ -15,7 +15,7 @@ const baseConfig = {
 
 const npmConfig = merge({}, baseConfig, {
   output: {
-    file: `${ NAME }.js`,
+    file: `dist/${ NAME }.js`,
   },
   plugins: [
     cleanup(),

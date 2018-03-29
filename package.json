@@ -2,14 +2,13 @@
   "name": "vh-check",
   "version": "1.1.0",
   "description": "iOS vh buggyfill",
-  "main": "vh-check.js",
+  "main": "dist/vh-check.js",
   "scripts": {
-    "demo": "npm run build:demo && cp ./vh-check.js ./demo/vh-check.js && http-server ./demo",
+    "demo": "npm run build:demo && http-server ./demo",
     "format-code": "prettier --single-quote --trailing-comma es5 src/index.js --write src/index.js",
     "toc": "doctoc README.md --github --notitle",
-    "update-dist-folder": "cp vh-check.js dist/vh-check.js",
-    "build": "rollup --config && npm run update-dist-folder",
-    "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/bundle.js",
+    "build": "rollup --config",
+    "build:demo": "npm run build && browserify ./demo/index.js -o ./demo/browserify-bundle.js",
     "prepublishOnly": "npm run toc && npm run build",
     "release": "np"
   },

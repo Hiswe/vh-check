@@ -1,6 +1,5 @@
 node_modules
 demo
 src
-dist
 rollup.config.js
 yarn-error.log
