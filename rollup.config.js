@@ -9,7 +9,7 @@ const baseConfig = {
   input: `src/index.js`,
   output: {
     format: `umd`,
-    name: `${ NAME }`,
+    name: `vhCheck`,
   },
 }
 

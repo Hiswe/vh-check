@@ -1,5 +1,5 @@
 node_modules
-demo/bundle.js
+demo/browserify-bundle.js
 demo/vh-check.js
 npm-debug.log
 yarn-error.log
