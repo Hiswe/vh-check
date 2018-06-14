@@ -3,3 +3,4 @@ demo
 src
 rollup.config.js
 yarn-error.log
+.vscode
