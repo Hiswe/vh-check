@@ -2,29 +2,41 @@
 
 [![npm version](https://badge.fury.io/js/vh-check.svg)](https://badge.fury.io/js/vh-check)
 
-Safari iOS has a bug about computing the CSS `100vh` value.
-
-This script will measure the difference and put it in a CSS var.
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [the problem](#the-problem)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
-- [Use](#use)
+- [use](#use)
   - [as a global variable](#as-a-global-variable)
-  - [as a Javascript module](#as-a-javascript-module)
-  - [How is it working](#how-is-it-working)
+  - [as a commonJS module](#as-a-commonjs-module)
+  - [as a ES module module](#as-a-es-module-module)
+  - [how it works](#how-it-works)
   - [configuration](#configuration)
 - [example](#example)
-  - [In your javascript](#in-your-javascript)
-  - [In your CSS](#in-your-css)
-- [browser support](#browser-support)
-  - [In short: only iOS 9.3+](#in-short-only-ios-93)
-  - [More details:](#more-details)
+  - [in your javascript](#in-your-javascript)
+  - [in your CSS](#in-your-css)
+- [about browser support](#about-browser-support)
 - [demo](#demo)
+- [related](#related)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## the problem
+
+Browsers don't always compute the [vh unit](https://developer.mozilla.org/en-US/docs/Web/CSS/length#vh) the same way.
+Some mobile browsers compute the `vh` CSS unit without taking care of the url bar. 
+That means that a `100vh` div will overflow the viewport by the size of the url bar. 
+
+This is the current behavior for:
+
+- [Safari iOS](https://bugs.webkit.org/show_bug.cgi?id=141832)
+- [Chrome android >= 56](https://developers.google.com/web/updates/2016/12/url-bar-resizing)
+
+As explained in the chrome post, that make sense but make it hard to have a full hero top block.
+
+This script will measure the difference and put it in a CSS var.
 
 ## why not use viewport-units-buggyfill?
 
@@ -36,7 +48,7 @@ But it has some problems with media-queries:
 
 https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13
 
-## Use
+## use
 
 ### as a global variable
 
@@ -51,7 +63,7 @@ https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13
 
 ```
 
-### as a Javascript module
+### as a commonJS module
 
 ```
 npm install vh-check
@@ -63,40 +75,51 @@ var vhCheck   = require('vh-check');
 var isNeeded  = vhCheck();
 ```
 
-### How is it working
+### as a ES module module
 
-- It will update the __vh-check var__ if needed
-- The CSS var will be updated on orientation change
-- The CSS var __will not__ be updated on scroll event  
+```
+npm install vh-check
+```
+
+```js
+import vhCheck from 'vh-check';
+const isNeeded  = vhCheck();
+```
+
+### how it works
+
+- It will update the `vh-check` CSS custom property if needed
+- `vh-check` will be updated on orientation change
+- `vh-check` __will not__ be updated on scroll event  
 
 ### configuration
 
-You can pass the CSS var name as a param to `vhCheck()`
+You can pass the CSS var name as a param to `vhCheck()` (default `vh-check`)
 
 ```js
-vhCheck('ios-gap')
+vhCheck('browser-address-bar')
 ```
 
 In your CSS you will have to reference:
 
 ```css
 :root {
-  --ios-gap: 0px;
+  --browser-address-bar: 0px;
 }
 main {
-  min-height: calc(100vh - var(--ios-gap));
+  min-height: calc(100vh - var(--browser-address-bar));
 }
 ```
 
 ## example
 
-### In your javascript
+### in your javascript
 
 ```js
 vhCheck()
 ```
 
-### In your CSS
+### in your CSS
 
 ```css
 :root {
@@ -104,20 +127,21 @@ vhCheck()
 }
 main {
   /* If you need to support browser without CSS var support */
-  min-height: calc(100vh);
-  /* buggyFill will work on iOS 9.3+ only */
-  min-height: calc(100vh - var(--vh-offset));
+  height: 100vh;
+  /* enable vh fix */
+  height: calc(100vh - var(--vh-offset));
 }
 ```
 
-## browser support
+## about browser support
 
-### In short: only iOS 9.3+
-
-### More details:
-
-- [**vh** – should be IE9+](http://caniuse.com/#search=vh). Only iOS7+ has that buggy behavior
-- [**CSS Variables** – iOS 9.3+](http://caniuse.com/#feat=css-variables). not IE and not < iOS 9.3. So this buggyfill will work only on the latest version of iOS :S
+- __vh unit__ – supported since [IE9+](http://caniuse.com/#search=vh)
+- __calc__ – supported since [IE9+](https://caniuse.com/#search=calc)
+- __CSS custom properties__ – supported since [IE Edge](http://caniuse.com/#feat=css-variables) and iOS 9.3+ 
+    IE11 & below will need a fallback without CSS var
+- __concerned browsers__ – as for now:
+  - Safari since iOS7+
+  - Chrome Android since version 56
 
 ## demo
 
@@ -125,3 +149,7 @@ main {
 - `npm install`
 - `npm run demo`
 - go to: http://localhost:8080
+
+## related
+
+- [ios-inner-height](https://www.npmjs.com/package/ios-inner-height)
