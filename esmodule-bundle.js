@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({3:[function(require,module,exports) {
+})({2:[function(require,module,exports) {
 var define;
 var global = arguments[3];
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -165,4 +165,4 @@ var message = (!test ? 'not ' : '') + ' needed.<br/>Gap is: ' + (test ? value : 
 p.innerHTML = message;
 
 document.body.insertBefore(p, document.body.firstChild);
-},{"../dist/vh-check.js":3}]},{},[1], null)
+},{"../dist/vh-check.js":2}]},{},[1], null)
