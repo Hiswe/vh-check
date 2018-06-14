@@ -1,6 +1,5 @@
 import merge from 'lodash.merge'
-import { rollup } from 'rollup'
-import uglify from 'rollup-plugin-uglify'
+import { uglify } from 'rollup-plugin-uglify'
 
 const NAME = `vh-check`
 

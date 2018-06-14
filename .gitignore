@@ -1,8 +1,10 @@
 node_modules
-demo/browserify-bundle.js
+demo/commonjs-bundle.js
+demo/esmodule-bundle.js
 demo/vh-check.js
 npm-debug.log
 yarn-error.log
 /vh-check.js
 /vh-check.dev.js
 /dist
+.cache
