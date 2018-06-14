@@ -1,7 +1,6 @@
 import merge from 'lodash.merge'
 import { rollup } from 'rollup'
 import uglify from 'rollup-plugin-uglify'
-import cleanup from 'rollup-plugin-cleanup'
 
 const NAME = `vh-check`
 
@@ -17,9 +16,6 @@ const npmConfig = merge({}, baseConfig, {
   output: {
     file: `dist/${ NAME }.js`,
   },
-  plugins: [
-    cleanup(),
-  ],
 })
 
 const minConfig = merge({}, baseConfig, {

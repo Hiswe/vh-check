@@ -14,10 +14,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hiswe/ios-vh.git"
+    "url": "git+https://github.com/Hiswe/vh-check.git"
   },
   "keywords": [
     "ios",
+    "mobile",
     "css",
     "vh",
     "vertical-height",
@@ -26,18 +27,17 @@
   "author": "hiswe <hiswehalya@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Hiswe/ios-vh/issues"
+    "url": "https://github.com/Hiswe/vh-check/issues"
   },
-  "homepage": "https://github.com/Hiswe/ios-vh#readme",
+  "homepage": "https://github.com/Hiswe/vh-check#readme",
   "dependencies": {},
   "devDependencies": {
-    "browserify": "^16.1.1",
+    "browserify": "^16.2.2",
     "doctoc": "^1.3.1",
     "http-server": "^0.11.1",
     "lodash.merge": "^4.6.1",
-    "prettier": "1.11.1",
-    "rollup": "^0.57.1",
-    "rollup-plugin-cleanup": "^2.0.0",
-    "rollup-plugin-uglify": "^3.0.0"
+    "prettier": "1.13.5",
+    "rollup": "^0.60.4",
+    "rollup-plugin-uglify": "^4.0.0"
   }
 }
