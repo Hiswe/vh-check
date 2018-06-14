@@ -1,0 +1,18 @@
+extends _layout.pug
+
+block vars
+  - title = `global`
+
+block content
+  script( src="https://unpkg.com/vh-check/dist/vh-check.min.js")
+  script.
+    (function () {
+      var test = vhCheck();
+      var p = document.createElement('p');
+      var message = (!test ? 'not ' : '') + 'needed.<br/>Gap is: ';
+      var value = document.documentElement.style.getPropertyValue('--vh-offset');
+      value = value ? value : '0px';
+      message = message + value;
+      p.innerHTML = message;
+      document.body.insertBefore(p, document.body.firstChild);
+    }());

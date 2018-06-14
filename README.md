@@ -19,6 +19,8 @@
   - [in your CSS](#in-your-css)
 - [about browser support](#about-browser-support)
 - [demo](#demo)
+  - [github pages](#github-pages)
+  - [local](#local)
 - [related](#related)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -144,6 +146,12 @@ main {
   - Chrome Android since version 56
 
 ## demo
+
+### github pages 
+
+https://hiswe.github.io/vh-check/
+
+### local
 
 - clone the project
 - `npm install`

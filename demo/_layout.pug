@@ -1,0 +1,23 @@
+doctype html
+
+block vars
+
+- var title = pageTitle || ''
+
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    title=`vh-check – ${title}`
+    link(rel="stylesheet", href=`${root}/demo.css`)
+
+  body
+    ul.witness
+      li.witness__panel
+        ul
+          li: a(href=`${root}/`) global
+          li: a(href=`${root}/demo-commonjs.html`) common-js
+          li: a(href=`${root}/demo-es-module.html`) es-module
+      li.witness__panel 100vh without check
+    block content
