@@ -5,6 +5,7 @@
   "main": "dist/vh-check.js",
   "scripts": {
     "demo": "npm run build:demo && npm run build:demo:html && http-server ./dist-demo",
+    "test": "ava --verbose",
     "format-code": "prettier src/index.js --write src/index.js",
     "toc": "doctoc README.md --github --notitle",
     "build": "rollup --config",
@@ -35,8 +36,16 @@
     "url": "https://github.com/Hiswe/vh-check/issues"
   },
   "homepage": "https://github.com/Hiswe/vh-check#readme",
+  "ava": {
+    "require": [
+      "./ava.babel-register.js"
+    ]
+  },
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/register": "^7.0.0-rc.1",
+    "ava": "^0.25.0",
     "browserify": "^16.2.2",
     "doctoc": "^1.3.1",
     "gh-pages": "^1.2.0",
