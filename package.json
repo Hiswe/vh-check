@@ -5,7 +5,7 @@
   "main": "dist/vh-check.js",
   "scripts": {
     "demo": "npm run build:demo && npm run build:demo:html && http-server ./dist-demo",
-    "format-code": "prettier --single-quote --trailing-comma es5 src/index.js --write src/index.js",
+    "format-code": "prettier src/index.js --write src/index.js",
     "toc": "doctoc README.md --github --notitle",
     "build": "rollup --config",
     "build:demo": "npm run build && npm run build:demo:commonjs && npm run build:demo:esmodule",
