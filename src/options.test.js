@@ -4,48 +4,69 @@ import getOptions from './options'
 
 const CUSTOM_CSS_VAR_NAME = `foo`
 
-test(`no options`, t => {
+test(`compute difference – no options`, t => {
   const options = getOptions()
   t.is(options.cssVarName, `vh-offset`)
-  t.is(options.method, `compute-difference`)
+  t.is(options.method.name, `computeDifference`)
+  t.is(options.redefineVh, false)
+  t.is(options.force, false)
 })
 
-test(`string option support`, t => {
+test(`compute difference – string option support`, t => {
   const options = getOptions(CUSTOM_CSS_VAR_NAME)
   t.is(options.cssVarName, CUSTOM_CSS_VAR_NAME)
-  t.is(options.method, `compute-difference`)
+  t.is(options.method.name, `computeDifference`)
+  t.is(options.redefineVh, false)
+  t.is(options.force, false)
+})
+
+test(`compute difference – change css var with object`, t => {
+  const options = getOptions({ cssVarName: CUSTOM_CSS_VAR_NAME })
+  t.is(options.cssVarName, CUSTOM_CSS_VAR_NAME)
+  t.is(options.method.name, `computeDifference`)
+  t.is(options.redefineVh, false)
+  t.is(options.force, false)
 })
 
 test(`vh-unit – change method only`, t => {
   const options = getOptions({
-    method: `redefine-vh-unit`,
+    redefineVh: true,
   })
   t.is(options.cssVarName, `vh`)
-  t.is(options.method, `redefine-vh-unit`)
+  t.is(options.method.name, `redefineVhUnit`)
+  t.is(options.redefineVh, true)
+  t.is(options.force, false)
 })
 
 test(`vh-unit – change method & var name`, t => {
   const options = getOptions({
-    method: `redefine-vh-unit`,
+    redefineVh: true,
     cssVarName: CUSTOM_CSS_VAR_NAME,
   })
   t.is(options.cssVarName, CUSTOM_CSS_VAR_NAME)
-  t.is(options.method, `redefine-vh-unit`)
+  t.is(options.method.name, `redefineVhUnit`)
+  t.is(options.redefineVh, true)
+  t.is(options.force, false)
 })
 
-test(`vh-unit – misspell method name`, t => {
+test(`vh-unit – misspell options`, t => {
   const options = getOptions({
-    method: `bar`,
+    redefinevh: `bar`,
+    cssvarname: CUSTOM_CSS_VAR_NAME,
   })
   t.is(options.cssVarName, `vh-offset`)
-  t.is(options.method, `compute-difference`)
+  t.is(options.method.name, `computeDifference`)
+  t.is(options.redefineVh, false)
+  t.is(options.force, false)
 })
 
-test(`vh-unit – misspell method name with css var`, t => {
+test(`vh-unit – misspell redefinevh with css var`, t => {
   const options = getOptions({
-    method: `bar`,
+    redefinevh: `bar`,
     cssVarName: CUSTOM_CSS_VAR_NAME,
   })
   t.is(options.cssVarName, CUSTOM_CSS_VAR_NAME)
-  t.is(options.method, `compute-difference`)
+  t.is(options.method.name, `computeDifference`)
+  t.is(options.redefineVh, false)
+  t.is(options.force, false)
 })
