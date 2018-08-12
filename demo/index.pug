@@ -1,7 +1,10 @@
 extends _layout.pug
 
 block vars
-  - title = `global`
+  - var pageTitle = `global`
+
+block nav
+  +menu(0)
 
 block content
   script( src="https://unpkg.com/vh-check/dist/vh-check.min.js")

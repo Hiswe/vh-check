@@ -1,0 +1,11 @@
+-
+  var items = [
+    {name: `global`, url: `/`},
+    {name: `common-js`, url: `/demo-commonjs.html`},
+    {name: `es-module`, url: `/demo-es-module.html`},
+  ]
+
+mixin menu
+  ul.menu
+    each item in items
+      li.menu__item:  a(href=`${root}${item.url}`)= item.name

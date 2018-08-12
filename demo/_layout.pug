@@ -1,3 +1,5 @@
+include _menu.pug
+
 doctype html
 
 block vars
@@ -15,9 +17,10 @@ html(lang="en")
   body
     ul.witness
       li.witness__panel
-        ul
-          li: a(href=`${root}/`) global
-          li: a(href=`${root}/demo-commonjs.html`) common-js
-          li: a(href=`${root}/demo-es-module.html`) es-module
+        block nav
+        //- ul
+        //-   li: a(href=`${root}/`) global
+        //-   li: a(href=`${root}/demo-commonjs.html`) common-js
+        //-   li: a(href=`${root}/demo-es-module.html`) es-module
       li.witness__panel 100vh without check
     block content

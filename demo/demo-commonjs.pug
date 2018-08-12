@@ -1,7 +1,10 @@
 extends _layout.pug
 
 block vars
-  - title = `common js module`
+  - var pageTitle = `common js module`
+
+block nav
+  +menu()
 
 block content
   script(src=`${root}/commonjs-bundle.js`)

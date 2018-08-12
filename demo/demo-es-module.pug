@@ -1,7 +1,10 @@
 extends _layout.pug
 
 block vars
-  - title = `es module`
+  - var pageTitle = `es module`
+
+block nav
+  +menu()
 
 block content
   script(src=`${root}/esmodule-bundle.js`)

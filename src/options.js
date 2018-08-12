@@ -17,7 +17,6 @@ export default function getOptions(options) {
   // old options handling: only redefine the CSS var name
   if (isString(options)) {
     return Object.assign({}, defaultOptions, {
-      redefineVh: false,
       cssVarName: options,
       force: options.force === true,
     })
