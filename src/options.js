@@ -7,6 +7,7 @@ var defaultOptions = {
   redefineVh: false,
   method: methods.computeDifference,
   force: false,
+  getFullResult: false,
 }
 
 function isString(value) {
@@ -18,7 +19,6 @@ export default function getOptions(options) {
   if (isString(options)) {
     return Object.assign({}, defaultOptions, {
       cssVarName: options,
-      force: options.force === true,
     })
   }
   // be sure to have a configuration object
@@ -27,6 +27,7 @@ export default function getOptions(options) {
   // make sure we have the right options to start with
   var finaleOptions = {
     force: options.force === true,
+    getFullResult: options.getFullResult === true,
   }
   finaleOptions.redefineVh = options.redefineVh === true
   finaleOptions.method =

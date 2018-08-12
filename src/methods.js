@@ -32,11 +32,12 @@ function checkSizes() {
 
 export function computeDifference() {
   var sizes = checkSizes()
-  return sizes.offset
+  sizes.cssVarContent = sizes.offset
+  return sizes
 }
 
 export function redefineVhUnit() {
   var sizes = checkSizes()
-  if (sizes.offset === 0) return 0
-  return sizes.windowHeight * 0.01
+  sizes.cssVarContent = sizes.offset === 0 ? 0 : sizes.windowHeight * 0.01
+  return sizes
 }
