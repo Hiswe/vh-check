@@ -16,11 +16,8 @@ html(lang="en")
 
   body
     ul.witness
-      li.witness__panel
+      li.witness__panel.witness__panel--menu
         block nav
-        //- ul
-        //-   li: a(href=`${root}/`) global
-        //-   li: a(href=`${root}/demo-commonjs.html`) common-js
-        //-   li: a(href=`${root}/demo-es-module.html`) es-module
-      li.witness__panel 100vh without check
+      li.js-check.witness__panel.witness__panel--with-check
+      li.witness__panel.witness__panel--no-check 100vh without check
     block content

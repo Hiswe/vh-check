@@ -3,9 +3,12 @@
     {name: `global`, url: `/`},
     {name: `common-js`, url: `/demo-commonjs.html`},
     {name: `es-module`, url: `/demo-es-module.html`},
+    {name: `redefine-vh`, url: `/demo-redefine-vh.html`},
   ]
 
-mixin menu
-  ul.menu
-    each item in items
-      li.menu__item:  a(href=`${root}${item.url}`)= item.name
+mixin menu( activeIndex )
+  nav.menu
+    each item, index  in items
+      - var isActive = activeIndex === index
+      - var className = `menu__item${ isActive ? ` menu__item--active` : `` }`
+      li(class=className):  a(href=`${root}${item.url}`)= item.name

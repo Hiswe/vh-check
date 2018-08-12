@@ -17,5 +17,6 @@ block content
       value = value ? value : '0px';
       message = message + value;
       p.innerHTML = message;
-      document.body.insertBefore(p, document.body.firstChild);
+      var domCheckWrapper = document.querySelector('.js-check');
+      domCheckWrapper.appendChild(p);
     }());

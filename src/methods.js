@@ -1,32 +1,42 @@
 'use strict'
 
-import * as domUtils from './dom-utils'
-
-export function computeDifference() {
-  // test with vh
-  var vhTest = domUtils.createTestElement(
-    'position: fixed; top: 0; height: 100vh;'
+// don't know a better way to make have the size of a CSS 100vh
+// better than creating a dom element
+function createTestElement() {
+  var testElement = document.createElement('div')
+  testElement.style.cssText =
+    'position: fixed; top: 0; height: 100vh; pointer-events: none;'
+  document.documentElement.insertBefore(
+    testElement,
+    document.documentElement.firstChild
   )
-  // in iOS vh will be bigger
+  return testElement
+}
+
+function removeTestElement(element) {
+  document.documentElement.removeChild(element)
+}
+
+//  in some browsers this will be bigger than window.innerHeight
+function checkSizes() {
+  var vhTest = createTestElement()
   var windowHeight = window.innerHeight
   var vh = vhTest.offsetHeight
-  var offset = vh - windowHeight
+  removeTestElement(vhTest)
+  return {
+    vh: vh,
+    windowHeight: innerHeight,
+    offset: vh - windowHeight,
+  }
+}
 
-  // console.log({
-  //   windowHeight: windowHeight,
-  //   vh: vh,
-  //   offset: offset,
-  // })
-  // clean
-  domUtils.removeTestElement(vhTest)
-  return offset
+export function computeDifference() {
+  var sizes = checkSizes()
+  return sizes.offset
 }
 
 export function redefineVhUnit() {
-  var windowHeight = window.innerHeight
-  // console.log({
-  //   innerHeight: window.innerHeight,
-  //   clientHeight: document.documentElement.clientHeight,
-  // })
-  return windowHeight * 0.01
+  var sizes = checkSizes()
+  if (sizes.offset === 0) return 0
+  return sizes.windowHeight * 0.01
 }
