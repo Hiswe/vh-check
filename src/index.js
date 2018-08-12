@@ -5,7 +5,7 @@ import getOptions from './options'
 function updateCssVar(cssVarName, result) {
   document.documentElement.style.setProperty(
     '--' + cssVarName,
-    result.cssVarContent + 'px'
+    result.value + 'px'
   )
 }
 
@@ -13,7 +13,7 @@ export default function vhCheck(options) {
   options = Object.freeze(getOptions(options))
   var result = options.method()
   // usefulness check
-  if (!result.offset && !options.force) {
+  if (!result.isNeeded && !options.force) {
     return options.getFullResult ? result : false
   }
   updateCssVar(options.cssVarName, result)

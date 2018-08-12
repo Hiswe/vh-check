@@ -22,22 +22,24 @@ function checkSizes() {
   var vhTest = createTestElement()
   var windowHeight = window.innerHeight
   var vh = vhTest.offsetHeight
+  var offset = vh - windowHeight
   removeTestElement(vhTest)
   return {
     vh: vh,
     windowHeight: innerHeight,
-    offset: vh - windowHeight,
+    offset: offset,
+    isNeeded: offset !== 0,
   }
 }
 
 export function computeDifference() {
   var sizes = checkSizes()
-  sizes.cssVarContent = sizes.offset
+  sizes.value = sizes.offset
   return sizes
 }
 
 export function redefineVhUnit() {
   var sizes = checkSizes()
-  sizes.cssVarContent = sizes.offset === 0 ? 0 : sizes.windowHeight * 0.01
+  sizes.value = sizes.windowHeight * 0.01
   return sizes
 }
