@@ -6,8 +6,9 @@
     {name: `redefine-vh`, url: `/demo-redefine-vh.html`},
   ]
 
-mixin menu( activeIndex )
-  nav.menu
+mixin menu( activeIndex, redefineVh )
+  - var wrapperClassName = `menu menu--${redefineVh ? `redefine-vh` : `100-vh-gap`}`
+  ul(class=wrapperClassName)
     each item, index  in items
       - var isActive = activeIndex === index
       - var className = `menu__item${ isActive ? ` menu__item--active` : `` }`

@@ -11,12 +11,10 @@ block content
   script.
     (function () {
       var test = vhCheck();
-      var p = document.createElement('p');
       var message = (!test ? 'not ' : '') + 'needed.<br/>Gap is: ';
       var value = document.documentElement.style.getPropertyValue('--vh-offset');
       value = value ? value : '0px';
       message = message + value;
-      p.innerHTML = message;
-      var domCheckWrapper = document.querySelector('.js-check');
-      domCheckWrapper.appendChild(p);
+      const domCheckWrapper = document.querySelector('.js-check');
+      domCheckWrapper.innerHTML = message;
     }());
