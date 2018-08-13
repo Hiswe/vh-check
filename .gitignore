@@ -8,4 +8,5 @@ yarn-error.log
 /vh-check.dev.js
 /dist
 /dist-demo
+.nyc_output
 .cache

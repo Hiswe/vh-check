@@ -5,3 +5,4 @@ rollup.config.js
 yarn-error.log
 .vscode
 .prettierrc.js
+.nyc_output
