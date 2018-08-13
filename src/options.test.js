@@ -10,7 +10,6 @@ test(`compute difference – no options`, t => {
   t.is(options.method.name, `computeDifference`)
   t.is(options.redefineVh, false)
   t.is(options.force, false)
-  t.is(options.getFullResult, false)
 })
 
 test(`compute difference – string option support`, t => {
@@ -19,7 +18,6 @@ test(`compute difference – string option support`, t => {
   t.is(options.method.name, `computeDifference`)
   t.is(options.redefineVh, false)
   t.is(options.force, false)
-  t.is(options.getFullResult, false)
 })
 
 test(`compute difference – change css var with object`, t => {
@@ -28,7 +26,6 @@ test(`compute difference – change css var with object`, t => {
   t.is(options.method.name, `computeDifference`)
   t.is(options.redefineVh, false)
   t.is(options.force, false)
-  t.is(options.getFullResult, false)
 })
 
 test(`compute difference – change force & getFullResult`, t => {
@@ -37,7 +34,6 @@ test(`compute difference – change force & getFullResult`, t => {
   t.is(options.method.name, `computeDifference`)
   t.is(options.redefineVh, false)
   t.is(options.force, true)
-  t.is(options.getFullResult, true)
 })
 
 test(`vh-unit – change method only`, t => {
@@ -48,7 +44,6 @@ test(`vh-unit – change method only`, t => {
   t.is(options.method.name, `redefineVhUnit`)
   t.is(options.redefineVh, true)
   t.is(options.force, false)
-  t.is(options.getFullResult, false)
 })
 
 test(`vh-unit – change method & var name`, t => {
@@ -60,7 +55,6 @@ test(`vh-unit – change method & var name`, t => {
   t.is(options.method.name, `redefineVhUnit`)
   t.is(options.redefineVh, true)
   t.is(options.force, false)
-  t.is(options.getFullResult, false)
 })
 
 test(`vh-unit – misspell options`, t => {
@@ -83,5 +77,4 @@ test(`vh-unit – misspell redefinevh with css var`, t => {
   t.is(options.method.name, `computeDifference`)
   t.is(options.redefineVh, false)
   t.is(options.force, false)
-  t.is(options.getFullResult, false)
 })

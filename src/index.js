@@ -14,7 +14,7 @@ export default function vhCheck(options) {
   var result = options.method()
   // usefulness check
   if (!result.isNeeded && !options.force) {
-    return options.getFullResult ? result : false
+    return result
   }
   updateCssVar(options.cssVarName, result)
   // Listen for orientation changes
@@ -26,5 +26,5 @@ export default function vhCheck(options) {
     },
     false
   )
-  return options.getFullResult ? result : true
+  return result
 }

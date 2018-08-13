@@ -7,7 +7,6 @@ var defaultOptions = {
   redefineVh: false,
   method: methods.computeDifference,
   force: false,
-  getFullResult: false,
 }
 
 function isString(value) {
@@ -27,7 +26,6 @@ export default function getOptions(options) {
   // make sure we have the right options to start with
   var finaleOptions = {
     force: options.force === true,
-    getFullResult: options.getFullResult === true,
   }
   finaleOptions.redefineVh = options.redefineVh === true
   finaleOptions.method =

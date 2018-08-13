@@ -40,8 +40,10 @@
   "homepage": "https://github.com/Hiswe/vh-check#readme",
   "ava": {
     "require": [
+      "./ava.browser-env.js",
       "./ava.babel-register.js"
-    ]
+    ],
+    "verbose": true
   },
   "dependencies": {},
   "devDependencies": {
@@ -55,11 +57,13 @@
     "gulp-html-beautify": "^1.0.1",
     "gulp-pug": "^4.0.1",
     "http-server": "^0.11.1",
+    "jsdom": "^11.12.0",
     "lodash.merge": "^4.6.1",
     "parcel-bundler": "^1.9.7",
     "prettier": "1.14.2",
     "rollup": "^0.64.1",
     "rollup-plugin-uglify": "^4.0.0",
+    "sinon": "^6.1.5",
     "yargs": "^12.0.1"
   }
 }
