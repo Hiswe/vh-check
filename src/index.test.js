@@ -1,7 +1,26 @@
 import test from 'ava'
 import sinon from 'sinon'
+import browserEnv from 'browser-env'
 
 import vhCheck from './index'
+
+browserEnv({
+  userAgent: `node.js`,
+})
+
+// we need to call the all the tests serially because:
+// • window & document are defined globally by browser-env
+// • since it's global, any attempt to parallelize tests will result in error.
+//   sinon.spy() will be called on already spied methods
+//   → and error
+// • rewire could be a way to define globals on the vh-check code…
+//   …while maintaining isolation BUT
+//   it doesn't play well with babel 7 import
+//   see:
+//   – limitations
+//     https://github.com/jhnns/rewire#limitations
+//   - no babel 7 support from babel-plugin-rewire
+//     https://github.com/speedskater/babel-plugin-rewire/issues/209
 
 function wait() {
   return new Promise(resolve => setTimeout(resolve, 10))
@@ -38,7 +57,6 @@ test.serial(`default behavior – not needed`, async t => {
 })
 
 test.serial(`force test when not needed`, t => {
-  const initialWindowHeight = window.innerHeight
   window.innerHeight = 0
   t.context.check = vhCheck({ force: true })
   t.false(t.context.check.isNeeded)
