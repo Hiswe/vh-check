@@ -13,6 +13,7 @@ test.beforeEach(t => {
 })
 
 test.afterEach.always(t => {
+  t.context.check.unbind()
   document.documentElement.style.setProperty.restore()
   window.innerHeight = t.context.initialWindowHeight
 })
@@ -20,17 +21,16 @@ test.afterEach.always(t => {
 const CUSTOM_CSS_VAR_NAME = `foo`
 
 test.serial(`default behavior – needed`, t => {
-  const check = vhCheck()
-  t.true(check.isNeeded)
+  t.context.check = vhCheck()
+  t.true(t.context.check.isNeeded)
   t.true(t.context.spy.calledOnce, `set the CSS custom var`)
   t.is(t.context.spy.getCall(0).args[0], `--vh-offset`, `has the right name`)
-  check.unbind()
 })
 
 test.serial(`default behavior – not needed`, async t => {
   window.innerHeight = 0
-  const check = vhCheck()
-  t.false(check.isNeeded)
+  t.context.check = vhCheck()
+  t.false(t.context.check.isNeeded)
   t.true(t.context.spy.notCalled, `don't set CSS custom var`)
   window.dispatchEvent(new Event('orientationchange'))
   await wait()
@@ -40,25 +40,23 @@ test.serial(`default behavior – not needed`, async t => {
 test.serial(`force test when not needed`, t => {
   const initialWindowHeight = window.innerHeight
   window.innerHeight = 0
-  const check = vhCheck({ force: true })
-  t.false(check.isNeeded)
+  t.context.check = vhCheck({ force: true })
+  t.false(t.context.check.isNeeded)
   t.true(t.context.spy.calledOnce, `set the CSS custom var`)
-  check.unbind()
 })
 
 test.serial(`change property name`, t => {
-  const check = vhCheck(CUSTOM_CSS_VAR_NAME)
+  t.context.check = vhCheck(CUSTOM_CSS_VAR_NAME)
   t.true(t.context.spy.calledOnce, `set the CSS custom var`)
   t.is(
     t.context.spy.getCall(0).args[0],
     `--${CUSTOM_CSS_VAR_NAME}`,
     `has the right name`
   )
-  check.unbind()
 })
 
 test.serial(`change property name with options object`, t => {
-  const check = vhCheck({
+  t.context.check = vhCheck({
     cssVarName: CUSTOM_CSS_VAR_NAME,
   })
   t.true(t.context.spy.calledOnce, `set the CSS custom var`)
@@ -67,19 +65,17 @@ test.serial(`change property name with options object`, t => {
     `--${CUSTOM_CSS_VAR_NAME}`,
     `has the right name`
   )
-  check.unbind()
 })
 
 test.serial(`change method`, t => {
-  const check = vhCheck({
+  t.context.check = vhCheck({
     redefineVh: true,
   })
-  t.is(check.value, check.windowHeight * 0.01)
-  check.unbind()
+  t.is(t.context.check.value, t.context.check.windowHeight * 0.01)
 })
 
 test.serial(`orientation change`, async t => {
-  vhCheck()
+  t.context.check = vhCheck()
   t.is(t.context.spy.callCount, 1, `initialization call`)
   window.dispatchEvent(new Event(`orientationchange`))
   await wait()
