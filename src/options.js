@@ -7,6 +7,7 @@ var defaultOptions = {
   redefineVh: false,
   method: methods.computeDifference,
   force: false,
+  autoBind: true,
 }
 
 function isString(value) {
@@ -26,6 +27,7 @@ export default function getOptions(options) {
   // make sure we have the right options to start with
   var finaleOptions = {
     force: options.force === true,
+    autoBind: options.autoBind === true,
   }
   finaleOptions.redefineVh = options.redefineVh === true
   finaleOptions.method =
@@ -37,6 +39,5 @@ export default function getOptions(options) {
       finaleOptions.redefineVh
       ? 'vh'
       : defaultOptions.cssVarName
-
   return finaleOptions
 }

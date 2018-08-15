@@ -1,4 +1,4 @@
 require('@babel/register')({
   babelrc: false,
-  presets: [`@ava/transform-test-files`, `@ava/stage-4`],
+  presets: [`@ava/stage-4`, `@ava/transform-test-files`],
 })
