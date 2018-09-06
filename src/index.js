@@ -26,9 +26,14 @@ export default function vhCheck(options) {
     var result = options.method()
     updateCssVar(options.cssVarName, result)
   }
+  
   window.addEventListener('orientationchange', onOrientationChange, false)
+  document.body.addEventListener('touchmove', onOrientationChange, false)
+
   result.unbind = function unbindOrientationchange() {
     window.removeEventListener('orientationchange', onOrientationChange)
+    document.body.removeEventListener('touchmove', onOrientationChange)
   }
+  
   return result
 }
