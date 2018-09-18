@@ -28,11 +28,16 @@ export default function vhCheck(options) {
   }
   
   window.addEventListener('orientationchange', onOrientationChange, false)
-  document.body.addEventListener('touchmove', onOrientationChange, false)
-
   result.unbind = function unbindOrientationchange() {
     window.removeEventListener('orientationchange', onOrientationChange)
-    document.body.removeEventListener('touchmove', onOrientationChange)
+  }
+
+  if (options.updateOnScroll){
+    document.body.addEventListener('touchmove', onOrientationChange, false)
+    result.unbind = function unbindOrientationchange() {
+      window.removeEventListener('orientationchange', onOrientationChange)
+      document.body.removeEventListener('touchmove', onOrientationChange)
+    }
   }
   
   return result

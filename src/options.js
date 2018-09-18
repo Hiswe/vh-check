@@ -8,6 +8,7 @@ var defaultOptions = {
   method: methods.computeDifference,
   force: false,
   autoBind: true,
+  updateOnScroll: false
 }
 
 function isString(value) {
