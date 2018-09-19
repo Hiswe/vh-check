@@ -26,7 +26,7 @@ function checkSizes() {
   removeTestElement(vhTest)
   return {
     vh: vh,
-    windowHeight: innerHeight,
+    windowHeight: windowHeight,
     offset: offset,
     isNeeded: offset !== 0,
   }

@@ -96,7 +96,7 @@ const check = vhCheck()
 
 - It will update the `vh-check` CSS custom property if needed
 - `vh-check` will be updated on orientation change
-- `vh-check` **will not** be updated on scroll event
+- `vh-check` **will not** be updated on scroll event by default
 
 ### returned object
 
@@ -104,13 +104,17 @@ vh-check will return a full object:
 
 ```js
 {
-  vh: 0,
-  windowHeight: 768,
-  offset: -768,
-  isNeeded: true,
-  value: -768,
-  recompute: methods.computeDifference,
-  unbind: unbind,
+  isNeeded: false, // wether or not it's needed
+  value: 0, // the CSS var value
+  vh: 480, // a 100vh div size
+  windowHeight: 480, // same value as window.innerHeight
+  offset: 0, // difference between the above sizes
+  // call this to programmatically get all the values and set the CSS var
+  // - this can be useful if you want to add your own listeners
+  //   that will trigger a computation
+  recompute: function computeDifference(),
+  // call this to remove any window listeners created by vh-check
+  unbind: function unbindVhCheckListeners(),
 },
 ```
 
