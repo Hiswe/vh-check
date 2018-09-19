@@ -7,7 +7,6 @@ var defaultOptions = {
   redefineVh: false,
   method: methods.computeDifference,
   force: false,
-  autoBind: true,
   updateOnScroll: false,
 }
 
@@ -28,7 +27,6 @@ export default function getOptions(options) {
   // make sure we have the right options to start with
   var finaleOptions = {
     force: options.force === true,
-    autoBind: options.autoBind === true,
     updateOnScroll: options.updateOnScroll === true,
   }
   finaleOptions.redefineVh = options.redefineVh === true

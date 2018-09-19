@@ -58,6 +58,7 @@
     "gulp-pug": "^4.0.1",
     "http-server": "^0.11.1",
     "lodash.merge": "^4.6.1",
+    "lodash.omit": "^4.5.0",
     "nyc": "^13.0.1",
     "parcel-bundler": "^1.9.7",
     "prettier": "1.14.2",

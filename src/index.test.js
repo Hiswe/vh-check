@@ -1,8 +1,10 @@
 import test from 'ava'
 import sinon from 'sinon'
 import browserEnv from 'browser-env'
+import omit from 'lodash.omit'
 
 import vhCheck from './index'
+import * as methods from './methods'
 
 browserEnv({
   userAgent: `node.js`,
@@ -38,6 +40,23 @@ test.afterEach.always(t => {
 })
 
 const CUSTOM_CSS_VAR_NAME = `foo`
+
+test.serial(`returned object`, t => {
+  const check = vhCheck()
+  t.context.check = check
+  t.deepEqual(
+    omit(check, [`unbind`]),
+    {
+      vh: 0,
+      windowHeight: 768,
+      offset: -768,
+      isNeeded: true,
+      value: -768,
+      recompute: methods.computeDifference,
+    },
+    `has the right return value`
+  )
+})
 
 test.serial(`default behavior – needed`, t => {
   t.context.check = vhCheck()
