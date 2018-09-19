@@ -99,3 +99,14 @@ test.serial(`orientation change`, async t => {
   await wait()
   t.is(t.context.spy.callCount, 2, `called again after orientationchange`)
 })
+
+test.serial.skip(`touchmove`, async t => {
+  t.context.check = vhCheck({
+    updateOnScroll: true,
+  })
+  t.is(t.context.spy.callCount, 1, `initialization call`)
+  // console.log(Touch)
+  window.dispatchEvent(new TouchEvent(`touchmove`))
+  await wait()
+  t.is(t.context.spy.callCount, 2, `called again after touchmove`)
+})

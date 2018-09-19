@@ -21,24 +21,29 @@ export default function vhCheck(options) {
     return result
   }
   updateCssVar(options.cssVarName, result)
-  // Listen for orientation changes
-  function onOrientationChange() {
+
+  function onWindowChange() {
     var result = options.method()
     updateCssVar(options.cssVarName, result)
   }
-  
-  window.addEventListener('orientationchange', onOrientationChange, false)
+
+  // listen for orientation change
+  // - this can't be configured
+  // - because it's convenient and not a real performance bottleneck
+  window.addEventListener('orientationchange', onWindowChange, false)
   result.unbind = function unbindOrientationchange() {
-    window.removeEventListener('orientationchange', onOrientationChange)
+    window.removeEventListener('orientationchange', onWindowChange)
   }
 
-  if (options.updateOnScroll){
-    document.body.addEventListener('touchmove', onOrientationChange, false)
+  // listen to touch move for scrolling
+  // - listening to scrolling can be expansive…
+  if (options.updateOnScroll) {
+    document.body.addEventListener('touchmove', onWindowChange, false)
     result.unbind = function unbindOrientationchange() {
-      window.removeEventListener('orientationchange', onOrientationChange)
-      document.body.removeEventListener('touchmove', onOrientationChange)
+      window.removeEventListener('orientationchange', onWindowChange)
+      document.body.removeEventListener('touchmove', onWindowChange)
     }
   }
-  
+
   return result
 }

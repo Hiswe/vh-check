@@ -8,7 +8,7 @@ var defaultOptions = {
   method: methods.computeDifference,
   force: false,
   autoBind: true,
-  updateOnScroll: false
+  updateOnScroll: false,
 }
 
 function isString(value) {
@@ -29,6 +29,7 @@ export default function getOptions(options) {
   var finaleOptions = {
     force: options.force === true,
     autoBind: options.autoBind === true,
+    updateOnScroll: options.updateOnScroll === true,
   }
   finaleOptions.redefineVh = options.redefineVh === true
   finaleOptions.method =
