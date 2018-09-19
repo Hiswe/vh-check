@@ -29,6 +29,8 @@ export default function vhCheck(options) {
   // listen for orientation change
   // - this can't be configured
   // - because it's convenient and not a real performance bottleneck
+  // TODO: use request animation frame
+  //       https://css-tricks.com/debouncing-throttling-explained-examples/
   window.addEventListener('orientationchange', onWindowChange, false)
   result.unbind = function unbindVhCheckListeners() {
     window.removeEventListener('orientationchange', onWindowChange)

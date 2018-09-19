@@ -44,6 +44,7 @@ This is the current behavior for:
 As explained in the chrome post, that make sense but make it hard to have a full hero top block.
 
 This script will measure the difference and put it in a CSS var.
+You can read more on this [css-trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/#article-header-id-0) by [Louis Hoebregts](https://css-tricks.com/author/louishoebregts/)
 
 ## why not use viewport-units-buggyfill?
 

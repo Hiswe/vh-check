@@ -1,6 +1,9 @@
 import vhCheck from '../dist/vh-check.js'
 
-const test = vhCheck()
+const test = vhCheck({
+  force: true,
+  updateOnScroll: true,
+})
 console.log(test)
 const message = `${!test.isNeeded ? 'not ' : ''} needed.<br/>Gap is: ${
   test.value
