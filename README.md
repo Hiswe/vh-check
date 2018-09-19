@@ -77,8 +77,7 @@ npm install vh-check
 
 ```js
 var check = require('vh-check')
-// isNeeded will be true || false
-var isNeeded = vhCheck()
+var vhTest = vhCheck() // return an object (see below)
 ```
 
 ### as a ES module module
@@ -157,6 +156,7 @@ In your CSS you will have to reference:
   --browser-address-bar: 0px;
 }
 main {
+  min-height: 100vh;
   min-height: calc(100vh - var(--browser-address-bar));
 }
 ```
