@@ -2,10 +2,7 @@
 
 var vhCheck = require('../dist/vh-check.js')
 var test = vhCheck()
-
-var message = (!test ? 'not ' : '') + 'needed.<br/>Gap is: '
-var value = document.documentElement.style.getPropertyValue('--vh-offset')
-value = value ? value : '0px'
-message = message + value
+var message = (!test.isNeeded ? 'not ' : '') + 'needed.<br/>Gap is: '
+message = message + test.value + 'px'
 const domCheckWrapper = document.querySelector('.js-check')
 domCheckWrapper.innerHTML = message

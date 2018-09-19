@@ -2,7 +2,6 @@ import vhCheck from '../dist/vh-check.js'
 
 const result = vhCheck({
   redefineVh: true,
-  getFullResult: true,
 })
 const message = `${!result.isNeeded ? 'not ' : ''} needed.<br/>1vh is: ${
   result.value
