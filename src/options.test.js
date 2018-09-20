@@ -101,21 +101,22 @@ test(`update on scroll`, t => {
 
 test(`update callback`, t => {
   const defaultOptions = getOptions()
-  t.is(defaultOptions.onUpdate.name, `noop`, `has a noop callback by default`)
+  t.is(defaultOptions.onUpdate, methods.noop, `has a noop callback by default`)
+  function customUpdateFunction() {}
   const options = getOptions({
-    onUpdate: function customUpdateFunction() {},
+    onUpdate: customUpdateFunction,
   })
   t.is(
-    options.onUpdate.name,
-    `customUpdateFunction`,
+    options.onUpdate,
+    customUpdateFunction,
     `has the user CB function if specified`
   )
   const badOptions = getOptions({
     onUpdate: `bad parameter`,
   })
   t.is(
-    badOptions.onUpdate.name,
-    `noop`,
+    badOptions.onUpdate,
+    methods.noop,
     `revert to noop if onUpdate isn't a function`
   )
 })
