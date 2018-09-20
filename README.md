@@ -33,6 +33,9 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+**⚠️ This documentation refers to the next release.**  
+Please read the [documentation on NPM](https://www.npmjs.com/package/vh-check) if you need the documentation for the actual release.
+
 ## the problem
 
 Browsers don't always compute the [vh unit](https://developer.mozilla.org/en-US/docs/Web/CSS/length#vh) the same way.
