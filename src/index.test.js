@@ -10,7 +10,7 @@ browserEnv({
   userAgent: `node.js`,
 })
 
-// we need to call the all the tests serially because:
+// we need to run all the tests serially because:
 // • window & document are defined globally by browser-env
 // • since it's global, any attempt to parallelize tests will result in error.
 //   sinon.spy() will be called on already spied methods

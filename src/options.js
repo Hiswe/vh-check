@@ -8,7 +8,7 @@ var defaultOptions = {
   method: methods.computeDifference,
   force: false,
   updateOnScroll: false,
-  onUpdate: false,
+  onUpdate: methods.noop,
 }
 
 function isString(value) {
@@ -26,21 +26,21 @@ export default function getOptions(options) {
   if (typeof options !== 'object') return defaultOptions
 
   // make sure we have the right options to start with
-  var finaleOptions = {
+  var finalOptions = {
     force: options.force === true,
     updateOnScroll: options.updateOnScroll === true,
     onUpdate:
       typeof options.onUpdate === 'function' ? options.onUpdate : methods.noop,
   }
-  finaleOptions.redefineVh = options.redefineVh === true
-  finaleOptions.method =
-    methods[finaleOptions.redefineVh ? 'redefineVhUnit' : 'computeDifference']
-  finaleOptions.cssVarName = isString(options.cssVarName)
+  finalOptions.redefineVh = options.redefineVh === true
+  finalOptions.method =
+    methods[finalOptions.redefineVh ? 'redefineVhUnit' : 'computeDifference']
+  finalOptions.cssVarName = isString(options.cssVarName)
     ? options.cssVarName
     : // when redefining vh unit we follow this article name convention
       // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
-      finaleOptions.redefineVh
+      finalOptions.redefineVh
       ? 'vh'
       : defaultOptions.cssVarName
-  return finaleOptions
+  return finalOptions
 }
