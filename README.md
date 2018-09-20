@@ -247,12 +247,12 @@ You'll need a [polyfill](https://github.com/airwave-development/raf-polyfill) if
 
 To sum it up:
 
-| Browser   | Library will work | CSS Custom property |
-| --------- | :---------------: | :-----------------: |
-| <= IE 9   |        ❌         |         ❌          |
-| <= IE 11  |        ✅         |         ❌          |
-| IE Edge   |        ✅         |         ✅          |
-| < iOS 9.3 |        ✅         |         ❌          |
+| Browser       | Library will work | CSS Custom property |
+| ------------- | :---------------: | :-----------------: |
+| <= IE 9       |        ❌         |         ❌          |
+| IE 10 & IE 11 |        ✅         |         ❌          |
+| IE Edge       |        ✅         |         ✅          |
+| < iOS 9.3     |        ✅         |         ❌          |
 
 ## demo
 
