@@ -35,18 +35,18 @@ export default function vhCheck(options) {
   // - because it's convenient and not a real performance bottleneck
   // TODO: use request animation frame
   //       https://css-tricks.com/debouncing-throttling-explained-examples/
-  window.addEventListener('orientationchange', onWindowChange, false)
+  window.addEventListener('resize', onWindowChange, false)
   result.unbind = function unbindVhCheckListeners() {
-    window.removeEventListener('orientationchange', onWindowChange)
+    window.removeEventListener('resize', onWindowChange)
   }
 
   // listen to touch move for scrolling
   // - listening to scrolling can be expansive…
   if (options.updateOnScroll) {
-    document.body.addEventListener('touchmove', onWindowChange, false)
+    window.addEventListener('touchmove', onWindowChange, false)
     result.unbind = function unbindVhCheckListeners() {
-      window.removeEventListener('orientationchange', onWindowChange)
-      document.body.removeEventListener('touchmove', onWindowChange)
+      window.removeEventListener('resize', onWindowChange)
+      window.removeEventListener('touchmove', onWindowChange)
     }
   }
 

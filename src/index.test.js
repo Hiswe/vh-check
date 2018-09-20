@@ -8,6 +8,7 @@ import * as methods from './methods'
 
 browserEnv({
   userAgent: `node.js`,
+  pretendToBeVisual: true,
 })
 
 // we need to run all the tests serially because:
@@ -24,7 +25,7 @@ browserEnv({
 //   - no babel 7 support from babel-plugin-rewire
 //     https://github.com/speedskater/babel-plugin-rewire/issues/209
 
-function wait(time = 10) {
+function wait(time = 20) {
   return new Promise(resolve => setTimeout(resolve, time))
 }
 
@@ -70,7 +71,7 @@ test.serial(`default behavior – not needed`, async t => {
   t.context.check = vhCheck()
   t.false(t.context.check.isNeeded)
   t.true(t.context.spy.notCalled, `don't set CSS custom var`)
-  window.dispatchEvent(new Event('orientationchange'))
+  window.dispatchEvent(new Event('resize'))
   await wait()
   t.true(t.context.spy.notCalled, `don't react on orientation change`)
 })
@@ -111,15 +112,15 @@ test.serial(`change method`, t => {
   t.is(t.context.check.value, t.context.check.windowHeight * 0.01)
 })
 
-test.serial(`orientation change`, async t => {
+test.serial(`resize`, async t => {
   t.context.check = vhCheck()
   t.is(t.context.spy.callCount, 1, `initialization call`)
-  window.dispatchEvent(new Event(`orientationchange`))
+  window.dispatchEvent(new Event(`resize`))
   await wait()
-  t.is(t.context.spy.callCount, 2, `called again after orientationchange`)
+  t.is(t.context.spy.callCount, 2, `called again after resize`)
 })
 
-test.serial.skip(`touchmove`, async t => {
+test.serial(`touchmove`, async t => {
   t.context.check = vhCheck({
     updateOnScroll: true,
   })

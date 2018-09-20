@@ -12,6 +12,7 @@
   - [as a commonJS module](#as-a-commonjs-module)
   - [as a ES module module](#as-a-es-module-module)
   - [how it works](#how-it-works)
+  - [returned object](#returned-object)
 - [example](#example)
   - [in your javascript](#in-your-javascript)
   - [in your CSS](#in-your-css)
@@ -22,10 +23,12 @@
     - [force](#force)
     - [redefineVh](#redefinevh)
     - [updateOnScroll](#updateonscroll)
+    - [onUpdate](#onupdate)
 - [about browser support](#about-browser-support)
 - [demo](#demo)
   - [github pages](#github-pages)
   - [local](#local)
+  - [run the tests](#run-the-tests)
 - [related](#related)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -41,7 +44,7 @@ This is the current behavior for:
 - [Safari iOS](https://bugs.webkit.org/show_bug.cgi?id=141832)
 - [Chrome android >= 56](https://developers.google.com/web/updates/2016/12/url-bar-resizing)
 
-As explained in the chrome post, that make sense but make it hard to have a full hero top block.
+As explained in the chrome post, that make sense but make it hard to have a full [hero top block](https://line25.com/articles/30-web-designs-that-fully-embrace-the-hero-image).
 
 This script will measure the difference and put it in a CSS var.
 You can read more on this [css-trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/#article-header-id-0) by [Louis Hoebregts](https://css-tricks.com/author/louishoebregts/)
@@ -133,7 +136,7 @@ vhCheck()
   --vh-offset: 0px;
 }
 main {
-  /* If you need to support browser without CSS var support */
+  /* If you need to support browser without CSS var support (<= IE11) */
   height: 100vh;
   /* enable vh fix */
   height: calc(100vh - var(--vh-offset));
@@ -153,18 +156,15 @@ vhCheck('browser-address-bar')
 In your CSS you will have to reference:
 
 ```css
-:root {
-  --browser-address-bar: 0px;
-}
 main {
   min-height: 100vh;
-  min-height: calc(100vh - var(--browser-address-bar));
+  min-height: calc(100vh - var(--browser-address-bar, 0px));
 }
 ```
 
 ### as an object
 
-`vh-check` allows you to have a more control of what it's doing.
+`vh-check` allows you to have more control by passing a configuration object.
 
 ```js
 vhCheck({
@@ -172,6 +172,7 @@ vhCheck({
   force: false,
   redefineVh: false,
   updateOnScroll: false,
+  onUpdate: function noop() {},
 })
 ```
 
@@ -198,10 +199,10 @@ Change the CSS var value.
 Instead of being the total size of the gap, it will be 1% of the real window size.
 You can find more explanation in this [CSS Trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
 
-_Important_
+_⚠️ Important_
 
-If you don't set a `cssVarName`, the CSS custom property will be named `vh`
-So in your CSS it will be:
+If you don't set a `cssVarName`, the CSS custom property will be named `vh`.
+So your CSS should be:
 
 ```css
 .my-element {
@@ -217,7 +218,21 @@ So in your CSS it will be:
 
 Add an event listener on `touchmove` to recompute the sizes
 
+_⚠️ Important_
+
+This can impact your website performances as changing sizes will make your browser [reflow](https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/)
+
+#### onUpdate
+
+**type:** `function`  
+**default:** `function noop(){}`
+
+you can specify a callback which be called with the sizes result every time a computation occurred.
+
 ## about browser support
+
+This library require [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) which is [IE10+](https://caniuse.com/#search=requestAnimationFrame)
+You'll need a [polyfill](https://github.com/airwave-development/raf-polyfill) if you want to support older browsers
 
 - **vh unit** – supported since [IE9+](http://caniuse.com/#search=vh)
 - **calc** – supported since [IE9+](https://caniuse.com/#search=calc)
@@ -225,7 +240,16 @@ Add an event listener on `touchmove` to recompute the sizes
   IE11 & below will need a fallback without CSS var
 - **concerned browsers** – as for now:
   - Safari since iOS7+
-  - Chrome Android since version 56
+  - Chrome Android >= v56
+
+To sum it up:
+
+| Browser   | Library will work | CSS Custom property |
+| --------- | :---------------: | :-----------------: |
+| <= IE 9   |        ❌         |         ❌          |
+| <= IE 11  |        ✅         |         ❌          |
+| IE Edge   |        ✅         |         ✅          |
+| < iOS 9.3 |        ✅         |         ❌          |
 
 ## demo
 
@@ -235,10 +259,18 @@ https://hiswe.github.io/vh-check/
 
 ### local
 
+you'll need [node](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/en/)
+
 - clone the project
-- `npm install`
-- `npm run demo`
+- `yarn install`
+- `yarn demo`
 - go to: http://localhost:8080
+
+### run the tests
+
+- clone the project
+- `yarn install`
+- `yarn test`
 
 ## related
 

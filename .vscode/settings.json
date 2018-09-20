@@ -3,6 +3,7 @@
     "buggyfill",
     "ghpages",
     "minified",
+    "polyfill",
     "rollup"
   ]
 }
