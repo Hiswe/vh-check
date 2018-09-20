@@ -1,12 +1,8 @@
 import vhCheck from '../dist/vh-check.js'
+import outputValue from './output-value'
 
-const test = vhCheck({
+vhCheck({
   force: true,
   updateOnScroll: true,
+  onUpdate: outputValue('gap'),
 })
-console.log(test)
-const message = `${!test.isNeeded ? 'not ' : ''} needed.<br/>Gap is: ${
-  test.value
-}px`
-const domCheckWrapper = document.querySelector('.js-check')
-domCheckWrapper.innerHTML = message

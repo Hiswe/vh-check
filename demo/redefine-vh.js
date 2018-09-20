@@ -1,12 +1,9 @@
 import vhCheck from '../dist/vh-check.js'
+import outputValue from './output-value'
 
-const result = vhCheck({
+vhCheck({
   redefineVh: true,
   force: true,
+  updateOnScroll: true,
+  onUpdate: outputValue('1vh'),
 })
-console.log(result)
-const message = `${!result.isNeeded ? 'not ' : ''} needed.<br/>1vh is: ${
-  result.value
-}px`
-const domCheckWrapper = document.querySelector('.js-check')
-domCheckWrapper.innerHTML = message

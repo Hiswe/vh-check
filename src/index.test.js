@@ -24,8 +24,8 @@ browserEnv({
 //   - no babel 7 support from babel-plugin-rewire
 //     https://github.com/speedskater/babel-plugin-rewire/issues/209
 
-function wait() {
-  return new Promise(resolve => setTimeout(resolve, 10))
+function wait(time = 10) {
+  return new Promise(resolve => setTimeout(resolve, time))
 }
 
 test.beforeEach(t => {
@@ -124,7 +124,6 @@ test.serial.skip(`touchmove`, async t => {
     updateOnScroll: true,
   })
   t.is(t.context.spy.callCount, 1, `initialization call`)
-  // console.log(Touch)
   window.dispatchEvent(new TouchEvent(`touchmove`))
   await wait()
   t.is(t.context.spy.callCount, 2, `called again after touchmove`)

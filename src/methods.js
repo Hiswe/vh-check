@@ -1,7 +1,6 @@
 'use strict'
 
-// don't know a better way to make have the size of a CSS 100vh
-// better than creating a dom element
+// don't know a better way to get the size of a CSS 100vh…
 function createTestElement() {
   var testElement = document.createElement('div')
   testElement.style.cssText =
@@ -31,6 +30,8 @@ function checkSizes() {
     isNeeded: offset !== 0,
   }
 }
+
+export function noop() {}
 
 export function computeDifference() {
   var sizes = checkSizes()

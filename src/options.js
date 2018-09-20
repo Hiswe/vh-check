@@ -8,6 +8,7 @@ var defaultOptions = {
   method: methods.computeDifference,
   force: false,
   updateOnScroll: false,
+  onUpdate: false,
 }
 
 function isString(value) {
@@ -28,6 +29,8 @@ export default function getOptions(options) {
   var finaleOptions = {
     force: options.force === true,
     updateOnScroll: options.updateOnScroll === true,
+    onUpdate:
+      typeof options.onUpdate === 'function' ? options.onUpdate : methods.noop,
   }
   finaleOptions.redefineVh = options.redefineVh === true
   finaleOptions.method =
