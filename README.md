@@ -199,12 +199,12 @@ Set the CSS var even if `100vh` computation is good
 **default:** `false`
 
 Change the CSS var value.
-Instead of being the total size of the gap, it will be 1% of the real window size.
+Instead of being the total size of the gap, it will be 1% of the real window size.  
 You can find more explanation in this [CSS Trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
 
 _⚠️ Important_
 
-If you don't set a `cssVarName`, the CSS custom property will be named `vh`.
+If you don't set a `cssVarName`, the CSS custom property will be named `vh`.  
 So your CSS should be:
 
 ```css
