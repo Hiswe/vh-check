@@ -120,6 +120,14 @@ test.serial(`orientationchange`, async t => {
   t.is(t.context.spy.callCount, 2, `called again after orientationchange`)
 })
 
+test.serial(`can manually unbind`, async t => {
+  t.context.check = vhCheck()
+  t.context.check.unbind()
+  window.dispatchEvent(new TouchEvent(`orientationchange`))
+  await wait()
+  t.is(t.context.spy.callCount, 1, `called again after orientationchange`)
+})
+
 test.serial(`touchmove`, async t => {
   t.context.check = vhCheck({
     updateOnScroll: true,
@@ -128,4 +136,30 @@ test.serial(`touchmove`, async t => {
   window.dispatchEvent(new TouchEvent(`touchmove`))
   await wait()
   t.is(t.context.spy.callCount, 2, `called again after touchmove`)
+})
+
+test.serial(`don't allow multiple binds with default config`, async t => {
+  const firstCheck = vhCheck()
+  t.context.check = firstCheck
+  t.is(t.context.spy.callCount, 1, `initialization call`)
+  const secondCheck = vhCheck()
+  t.is(t.context.spy.callCount, 2, `second call`)
+  window.dispatchEvent(new TouchEvent(`orientationchange`))
+  await wait()
+  t.is(t.context.spy.callCount, 3, `only 1 event is bind at a time`)
+  secondCheck.unbind()
+})
+
+test.serial(`don't allow multiple binds with updateOnScroll`, async t => {
+  const firstCheck = vhCheck({
+    updateOnScroll: true,
+  })
+  t.context.check = firstCheck
+  const secondCheck = vhCheck({
+    updateOnScroll: true,
+  })
+  window.dispatchEvent(new TouchEvent(`touchmove`))
+  await wait()
+  t.is(t.context.spy.callCount, 3, `only 1 event is bind at a time`)
+  secondCheck.unbind()
 })

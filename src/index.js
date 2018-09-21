@@ -1,7 +1,8 @@
 'use strict'
 
 import getOptions from './options'
-import { noop } from './methods'
+import * as methods from './methods'
+import * as events from './event-listerner'
 
 function updateCssVar(cssVarName, result) {
   document.documentElement.style.setProperty(
@@ -10,11 +11,13 @@ function updateCssVar(cssVarName, result) {
   )
 }
 
+var eventListeners = []
+
 export default function vhCheck(options) {
   options = Object.freeze(getOptions(options))
   var result = options.method()
   result.recompute = options.method
-  result.unbind = noop
+  result.unbind = methods.noop
   // usefulness check
   if (!result.isNeeded && !options.force) {
     return result
@@ -30,23 +33,18 @@ export default function vhCheck(options) {
     })
   }
 
+  // be sure we don't duplicates events listeners
+  events.removeAll()
   // listen for orientation change
   // - this can't be configured
   // - because it's convenient and not a real performance bottleneck
-  window.addEventListener('orientationchange', onWindowChange, false)
-  result.unbind = function unbindVhCheckListeners() {
-    window.removeEventListener('orientationchange', onWindowChange)
-  }
+  events.addListener('orientationchange', onWindowChange)
 
   // listen to touch move for scrolling
   // - listening to scrolling can be expansive…
   if (options.updateOnScroll) {
-    window.addEventListener('touchmove', onWindowChange, false)
-    result.unbind = function unbindVhCheckListeners() {
-      window.removeEventListener('orientationchange', onWindowChange)
-      window.removeEventListener('touchmove', onWindowChange)
-    }
+    events.addListener('touchmove', onWindowChange)
   }
-
+  result.unbind = events.removeAll
   return result
 }
