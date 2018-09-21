@@ -33,6 +33,7 @@
   - [changelog](#changelog)
   - [migrating](#migrating)
   - [run the tests](#run-the-tests)
+  - [thanks](#thanks)
   - [related](#related)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -288,6 +289,10 @@ See [MIGRATING.md](https://github.com/Hiswe/vh-check/blob/master/MIGRATING.md)
 - clone the project
 - `yarn install`
 - `yarn test`
+
+### thanks
+
+- [Chris Butterworth](https://github.com/ChrisButterworth) for the contribution
 
 ### related
 
