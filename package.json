@@ -7,7 +7,7 @@
     "demo": "npm run build:demo && http-server ./dist-demo -c-1",
     "test": "nyc ava",
     "format-code": "prettier src/index.js --write src/index.js",
-    "toc": "doctoc README.md --github --notitle",
+    "toc": "doctoc *.md --github --notitle",
     "build": "rollup --config",
     "build:demo": " parallelshell 'yarn build:demo:js' 'yarn build:demo:html'",
     "build:demo:js": "yarn build && parallelshell 'yarn build:demo:commonjs'  'yarn build:demo:esmodule' 'yarn build:demo:commonjs' 'yarn build:demo:redefine-vh'",

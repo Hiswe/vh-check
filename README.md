@@ -5,6 +5,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [the problem](#the-problem)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
@@ -28,8 +29,11 @@
 - [demo](#demo)
   - [github pages](#github-pages)
   - [local](#local)
+- [Other stuff](#other-stuff)
+  - [changelog](#changelog)
+  - [migrating](#migrating)
   - [run the tests](#run-the-tests)
-- [related](#related)
+  - [related](#related)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -269,12 +273,22 @@ you'll need [node](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/en/)
 - `yarn demo`
 - go to: http://localhost:8080
 
+## Other stuff
+
+### changelog
+
+See [CHANGELOG.md](https://github.com/Hiswe/vh-check/blob/master/CHANGELOG.md)
+
+### migrating
+
+See [MIGRATING.md](https://github.com/Hiswe/vh-check/blob/master/MIGRATING.md)
+
 ### run the tests
 
 - clone the project
 - `yarn install`
 - `yarn test`
 
-## related
+### related
 
 - [ios-inner-height](https://www.npmjs.com/package/ios-inner-height)
