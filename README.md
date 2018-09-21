@@ -101,7 +101,7 @@ const check = vhCheck()
 ### how it works
 
 - It will update the `vh-check` CSS custom property if needed
-- `vh-check` will be updated on orientation change
+- `vh-check` will be updated on `orientationchange` [event](https://developer.mozilla.org/en-US/docs/Web/Events/orientationchange)
 - `vh-check` **will not** be updated on scroll event by default
 
 ### returned object
