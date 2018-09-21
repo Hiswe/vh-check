@@ -112,12 +112,12 @@ test.serial(`change method`, t => {
   t.is(t.context.check.value, t.context.check.windowHeight * 0.01)
 })
 
-test.serial(`resize`, async t => {
+test.serial(`orientationchange`, async t => {
   t.context.check = vhCheck()
   t.is(t.context.spy.callCount, 1, `initialization call`)
-  window.dispatchEvent(new Event(`resize`))
+  window.dispatchEvent(new Event(`orientationchange`))
   await wait()
-  t.is(t.context.spy.callCount, 2, `called again after resize`)
+  t.is(t.context.spy.callCount, 2, `called again after orientationchange`)
 })
 
 test.serial(`touchmove`, async t => {
