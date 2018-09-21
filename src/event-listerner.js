@@ -2,6 +2,7 @@
 var passiveSupported = false
 var eventListeners = []
 
+/* istanbul ignore next */
 try {
   var options = Object.defineProperty({}, 'passive', {
     get: function() {
@@ -20,6 +21,7 @@ export function addListener(eventName, callback) {
   window.addEventListener(
     eventName,
     callback,
+    /* istanbul ignore next */
     passiveSupported ? { passive: true } : false
   )
 }
