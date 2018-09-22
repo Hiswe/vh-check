@@ -77,12 +77,50 @@ test.serial(`default behavior – not needed`, async t => {
   t.true(t.context.spy.notCalled, `don't react on orientation change`)
 })
 
-test.serial(`force test when not needed`, t => {
+test.serial(`force test when not needed`, async t => {
   window.innerHeight = 0
   t.context.check = vhCheck({ force: true })
   t.false(t.context.check.isNeeded)
   t.true(t.context.spy.calledOnce, `set the CSS custom var`)
 })
+
+test.serial(
+  `onUpdate callback is called with the right parameters`,
+  async t => {
+    const onUpdate = sinon.spy(function onUpdate() {})
+    t.context.check = vhCheck({ onUpdate })
+    t.is(onUpdate.callCount, 1, `callback is called`)
+    t.deepEqual(
+      onUpdate.getCall(0).args[0],
+      {
+        vh: 0,
+        windowHeight: 768,
+        offset: -768,
+        isNeeded: true,
+        value: -768,
+        recompute: methods.computeDifference,
+        unbind: events.removeAll,
+      },
+      `has the right return value`
+    )
+    window.dispatchEvent(new Event(`orientationchange`))
+    await wait()
+    t.is(onUpdate.callCount, 2, `callback is called on events`)
+    t.deepEqual(
+      onUpdate.getCall(1).args[0],
+      {
+        vh: 0,
+        windowHeight: 768,
+        offset: -768,
+        isNeeded: true,
+        value: -768,
+        recompute: methods.computeDifference,
+        unbind: events.removeAll,
+      },
+      `has the right return value`
+    )
+  }
+)
 
 test.serial(`property name – string option`, t => {
   t.context.check = vhCheck(CUSTOM_CSS_VAR_NAME)

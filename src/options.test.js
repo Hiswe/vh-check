@@ -180,7 +180,7 @@ test(`update no binding`, t => {
   )
 })
 
-test.only(`update callback`, t => {
+test(`update callback`, t => {
   function customUpdateFunction() {}
   const options = getOptions({
     onUpdate: customUpdateFunction,
