@@ -243,7 +243,7 @@ Add an event listener on `touchmove` to recompute the sizes
 **type:** `function`  
 **default:** `function noop(){}`
 
-you can specify a callback which be called with the sizes result every time a computation occurred.
+you can specify a callback which will be called with an updated `vh-check` object every time a computation occurre.
 
 ## about browser support
 
