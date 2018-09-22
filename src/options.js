@@ -4,10 +4,11 @@ import * as methods from './methods'
 
 var defaultOptions = {
   cssVarName: 'vh-offset',
-  redefineVh: false,
+  // redefineVh: false,
   method: methods.computeDifference,
   force: false,
-  updateOnScroll: false,
+  bind: true,
+  updateOnTouch: false,
   onUpdate: methods.noop,
 }
 
@@ -28,18 +29,21 @@ export default function getOptions(options) {
   // make sure we have the right options to start with
   var finalOptions = {
     force: options.force === true,
-    updateOnScroll: options.updateOnScroll === true,
+    bind: options.bind !== false,
+    updateOnTouch: options.updateOnTouch === true,
     onUpdate:
       typeof options.onUpdate === 'function' ? options.onUpdate : methods.noop,
   }
-  finalOptions.redefineVh = options.redefineVh === true
+
+  // method change
+  var redefineVh = options.redefineVh === true
   finalOptions.method =
-    methods[finalOptions.redefineVh ? 'redefineVhUnit' : 'computeDifference']
+    methods[redefineVh ? 'redefineVhUnit' : 'computeDifference']
   finalOptions.cssVarName = isString(options.cssVarName)
     ? options.cssVarName
     : // when redefining vh unit we follow this article name convention
       // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
-      finalOptions.redefineVh
+      redefineVh
       ? 'vh'
       : defaultOptions.cssVarName
   return finalOptions

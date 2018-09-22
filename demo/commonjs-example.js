@@ -5,7 +5,6 @@ var outputValue = require('./output-value')
 
 vhCheck({
   force: true,
-  updateOnScroll: true,
-  onUpdate: outputValue,
+  updateOnTouch: true,
   onUpdate: outputValue('gap'),
 })

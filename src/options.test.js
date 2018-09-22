@@ -7,49 +7,84 @@ const CUSTOM_CSS_VAR_NAME = `foo`
 
 test(`compute difference – no options`, t => {
   const options = getOptions()
-  t.is(options.cssVarName, `vh-offset`, `css var name`)
-  t.is(options.method, methods.computeDifference, `method`)
-  t.is(options.redefineVh, false, `redefine vh`)
-  t.is(options.force, false, `force`)
-  t.is(options.updateOnScroll, false, `update on scroll`)
+  t.deepEqual(
+    options,
+    {
+      cssVarName: `vh-offset`,
+      method: methods.computeDifference,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
 test(`compute difference – string option support`, t => {
   const options = getOptions(CUSTOM_CSS_VAR_NAME)
-  t.is(options.cssVarName, CUSTOM_CSS_VAR_NAME, `css var name`)
-  t.is(options.method, methods.computeDifference, `method`)
-  t.is(options.redefineVh, false, `redefine vh`)
-  t.is(options.force, false, `force`)
-  t.is(options.updateOnScroll, false, `update on scroll`)
+  t.deepEqual(
+    options,
+    {
+      cssVarName: CUSTOM_CSS_VAR_NAME,
+      method: methods.computeDifference,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
 test(`compute difference – change css var with object`, t => {
   const options = getOptions({ cssVarName: CUSTOM_CSS_VAR_NAME })
-  t.is(options.cssVarName, CUSTOM_CSS_VAR_NAME, `css var name`)
-  t.is(options.method, methods.computeDifference, `method`)
-  t.is(options.redefineVh, false, `redefine vh`)
-  t.is(options.force, false, `force`)
-  t.is(options.updateOnScroll, false, `update on scroll`)
+  t.deepEqual(
+    options,
+    {
+      cssVarName: CUSTOM_CSS_VAR_NAME,
+      method: methods.computeDifference,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
-test(`compute difference – change force & getFullResult`, t => {
-  const options = getOptions({ force: true, getFullResult: true })
-  t.is(options.cssVarName, `vh-offset`, `css var name`)
-  t.is(options.method, methods.computeDifference, `method`)
-  t.is(options.redefineVh, false, `redefine vh`)
-  t.is(options.force, true, `force`)
-  t.is(options.updateOnScroll, false, `update on scroll`)
+test(`compute difference – change force`, t => {
+  const options = getOptions({ force: true })
+  t.deepEqual(
+    options,
+    {
+      cssVarName: `vh-offset`,
+      method: methods.computeDifference,
+      force: true,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
 test(`vh-unit – change method only`, t => {
   const options = getOptions({
     redefineVh: true,
   })
-  t.is(options.cssVarName, `vh`, `css var name`)
-  t.is(options.method, methods.redefineVhUnit, `method`)
-  t.is(options.redefineVh, true, `redefine vh`)
-  t.is(options.force, false, `force`)
-  t.is(options.updateOnScroll, false, `update on scroll`)
+  t.deepEqual(
+    options,
+    {
+      cssVarName: `vh`,
+      method: methods.redefineVhUnit,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
 test(`vh-unit – change method & var name`, t => {
@@ -57,11 +92,18 @@ test(`vh-unit – change method & var name`, t => {
     redefineVh: true,
     cssVarName: CUSTOM_CSS_VAR_NAME,
   })
-  t.is(options.cssVarName, CUSTOM_CSS_VAR_NAME, `css var name`)
-  t.is(options.method, methods.redefineVhUnit, `method`)
-  t.is(options.redefineVh, true, `redefine vh`)
-  t.is(options.force, false, `force`)
-  t.is(options.updateOnScroll, false, `update on scroll`)
+  t.deepEqual(
+    options,
+    {
+      cssVarName: CUSTOM_CSS_VAR_NAME,
+      method: methods.redefineVhUnit,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
 test(`vh-unit – misspell options`, t => {
@@ -69,11 +111,18 @@ test(`vh-unit – misspell options`, t => {
     redefinevh: `bar`,
     cssvarname: CUSTOM_CSS_VAR_NAME,
   })
-  t.is(options.cssVarName, `vh-offset`, `css var name`)
-  t.is(options.method, methods.computeDifference, `method`)
-  t.is(options.redefineVh, false, `redefine vh`)
-  t.is(options.force, false, `force`)
-  t.is(options.updateOnScroll, false, `update on scroll`)
+  t.deepEqual(
+    options,
+    {
+      cssVarName: `vh-offset`,
+      method: methods.computeDifference,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
 test(`vh-unit – misspell redefinevh with css var`, t => {
@@ -81,42 +130,86 @@ test(`vh-unit – misspell redefinevh with css var`, t => {
     redefinevh: `bar`,
     cssVarName: CUSTOM_CSS_VAR_NAME,
   })
-  t.is(options.cssVarName, CUSTOM_CSS_VAR_NAME, `css var name`)
-  t.is(options.method, methods.computeDifference, `method`)
-  t.is(options.redefineVh, false, `redefine vh`)
-  t.is(options.force, false, `force`)
-  t.is(options.updateOnScroll, false, `update on scroll`)
+  t.deepEqual(
+    options,
+    {
+      cssVarName: CUSTOM_CSS_VAR_NAME,
+      method: methods.computeDifference,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
-test(`update on scroll`, t => {
+test(`update on touch`, t => {
   const options = getOptions({
-    updateOnScroll: true,
+    updateOnTouch: true,
   })
-  t.is(options.cssVarName, `vh-offset`, `css var name`)
-  t.is(options.method, methods.computeDifference, `method`)
-  t.is(options.redefineVh, false, `redefine vh`)
-  t.is(options.force, false, `force`)
-  t.is(options.updateOnScroll, true, `update on scroll`)
+  t.deepEqual(
+    options,
+    {
+      cssVarName: `vh-offset`,
+      method: methods.computeDifference,
+      force: false,
+      bind: true,
+      updateOnTouch: true,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
 })
 
-test(`update callback`, t => {
-  const defaultOptions = getOptions()
-  t.is(defaultOptions.onUpdate, methods.noop, `has a noop callback by default`)
+test(`update no binding`, t => {
+  const options = getOptions({
+    bind: false,
+  })
+  t.deepEqual(
+    options,
+    {
+      cssVarName: `vh-offset`,
+      method: methods.computeDifference,
+      force: false,
+      bind: false,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
+    `has the right return options`
+  )
+})
+
+test.only(`update callback`, t => {
   function customUpdateFunction() {}
   const options = getOptions({
     onUpdate: customUpdateFunction,
   })
-  t.is(
-    options.onUpdate,
-    customUpdateFunction,
-    `has the user CB function if specified`
+  t.deepEqual(
+    options,
+    {
+      cssVarName: `vh-offset`,
+      method: methods.computeDifference,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: customUpdateFunction,
+    },
+    `has the right return options`
   )
   const badOptions = getOptions({
     onUpdate: `bad parameter`,
   })
-  t.is(
-    badOptions.onUpdate,
-    methods.noop,
+  t.deepEqual(
+    badOptions,
+    {
+      cssVarName: `vh-offset`,
+      method: methods.computeDifference,
+      force: false,
+      bind: true,
+      updateOnTouch: false,
+      onUpdate: methods.noop,
+    },
     `revert to noop if onUpdate isn't a function`
   )
 })

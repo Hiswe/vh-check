@@ -1,10 +1,10 @@
 import test from 'ava'
 import sinon from 'sinon'
 import browserEnv from 'browser-env'
-import omit from 'lodash.omit'
 
 import vhCheck from './index'
 import * as methods from './methods'
+import * as events from './event-listerner'
 
 browserEnv({
   userAgent: `node.js`,
@@ -46,7 +46,7 @@ test.serial(`returned object`, t => {
   const check = vhCheck()
   t.context.check = check
   t.deepEqual(
-    omit(check, [`unbind`]),
+    check,
     {
       vh: 0,
       windowHeight: 768,
@@ -54,6 +54,7 @@ test.serial(`returned object`, t => {
       isNeeded: true,
       value: -768,
       recompute: methods.computeDifference,
+      unbind: events.removeAll,
     },
     `has the right return value`
   )
@@ -83,7 +84,7 @@ test.serial(`force test when not needed`, t => {
   t.true(t.context.spy.calledOnce, `set the CSS custom var`)
 })
 
-test.serial(`change property name`, t => {
+test.serial(`property name – string option`, t => {
   t.context.check = vhCheck(CUSTOM_CSS_VAR_NAME)
   t.true(t.context.spy.calledOnce, `set the CSS custom var`)
   t.is(
@@ -93,7 +94,7 @@ test.serial(`change property name`, t => {
   )
 })
 
-test.serial(`change property name with options object`, t => {
+test.serial(`property name – options object`, t => {
   t.context.check = vhCheck({
     cssVarName: CUSTOM_CSS_VAR_NAME,
   })
@@ -112,7 +113,7 @@ test.serial(`change method`, t => {
   t.is(t.context.check.value, t.context.check.windowHeight * 0.01)
 })
 
-test.serial(`orientationchange`, async t => {
+test.serial(`events – orientationchange`, async t => {
   t.context.check = vhCheck()
   t.is(t.context.spy.callCount, 1, `initialization call`)
   window.dispatchEvent(new Event(`orientationchange`))
@@ -120,7 +121,21 @@ test.serial(`orientationchange`, async t => {
   t.is(t.context.spy.callCount, 2, `called again after orientationchange`)
 })
 
-test.serial(`can manually unbind`, async t => {
+test.serial(`events – no bindings`, async t => {
+  t.context.check = vhCheck({
+    bind: false,
+    updateOnTouch: true,
+  })
+  t.is(t.context.spy.callCount, 1, `initialization call`)
+  window.dispatchEvent(new Event(`orientationchange`))
+  await wait()
+  t.is(t.context.spy.callCount, 1, `doesn't update on orientationchange`)
+  window.dispatchEvent(new TouchEvent(`touchmove`))
+  await wait()
+  t.is(t.context.spy.callCount, 1, `doesn't update on touchmove`)
+})
+
+test.serial(`events – can manually unbind`, async t => {
   t.context.check = vhCheck()
   t.context.check.unbind()
   window.dispatchEvent(new TouchEvent(`orientationchange`))
@@ -128,9 +143,9 @@ test.serial(`can manually unbind`, async t => {
   t.is(t.context.spy.callCount, 1, `called again after orientationchange`)
 })
 
-test.serial(`touchmove`, async t => {
+test.serial(`events – touchmove`, async t => {
   t.context.check = vhCheck({
-    updateOnScroll: true,
+    updateOnTouch: true,
   })
   t.is(t.context.spy.callCount, 1, `initialization call`)
   window.dispatchEvent(new TouchEvent(`touchmove`))
@@ -138,7 +153,7 @@ test.serial(`touchmove`, async t => {
   t.is(t.context.spy.callCount, 2, `called again after touchmove`)
 })
 
-test.serial(`don't allow multiple binds with default config`, async t => {
+test.serial(`events – prevent multiple binds with default config`, async t => {
   const firstCheck = vhCheck()
   t.context.check = firstCheck
   t.is(t.context.spy.callCount, 1, `initialization call`)
@@ -150,14 +165,10 @@ test.serial(`don't allow multiple binds with default config`, async t => {
   secondCheck.unbind()
 })
 
-test.serial(`don't allow multiple binds with updateOnScroll`, async t => {
-  const firstCheck = vhCheck({
-    updateOnScroll: true,
-  })
+test.serial(`events – prevent multiple binds with updateOnTouch`, async t => {
+  const firstCheck = vhCheck({ updateOnTouch: true })
   t.context.check = firstCheck
-  const secondCheck = vhCheck({
-    updateOnScroll: true,
-  })
+  const secondCheck = vhCheck({ updateOnTouch: true })
   window.dispatchEvent(new TouchEvent(`touchmove`))
   await wait()
   t.is(t.context.spy.callCount, 3, `only 1 event is bind at a time`)

@@ -1,7 +1,6 @@
 'use strict'
 
 import getOptions from './options'
-import * as methods from './methods'
 import * as events from './event-listerner'
 
 function updateCssVar(cssVarName, result) {
@@ -11,13 +10,17 @@ function updateCssVar(cssVarName, result) {
   )
 }
 
-var eventListeners = []
+function formatResult(sizes, options) {
+  return Object.assign({}, sizes, {
+    unbind: events.removeAll,
+    recompute: options.method,
+  })
+}
 
 export default function vhCheck(options) {
   options = Object.freeze(getOptions(options))
-  var result = options.method()
-  result.recompute = options.method
-  result.unbind = methods.noop
+  var result = formatResult(options.method(), options)
+
   // usefulness check
   if (!result.isNeeded && !options.force) {
     return result
@@ -25,26 +28,31 @@ export default function vhCheck(options) {
   updateCssVar(options.cssVarName, result)
   options.onUpdate(result)
 
+  // enabled byt default
+  if (!options.bind) return result
+
   function onWindowChange() {
     window.requestAnimationFrame(function() {
-      var result = options.method()
-      updateCssVar(options.cssVarName, result)
-      options.onUpdate(result)
+      var sizes = options.method()
+      updateCssVar(options.cssVarName, sizes)
+      options.onUpdate(formatResult(sizes, options))
     })
   }
 
   // be sure we don't duplicates events listeners
-  events.removeAll()
+  result.unbind()
+
   // listen for orientation change
   // - this can't be configured
   // - because it's convenient and not a real performance bottleneck
   events.addListener('orientationchange', onWindowChange)
 
   // listen to touch move for scrolling
+  // – disabled by default
   // - listening to scrolling can be expansive…
-  if (options.updateOnScroll) {
+  if (options.updateOnTouch) {
     events.addListener('touchmove', onWindowChange)
   }
-  result.unbind = events.removeAll
+
   return result
 }

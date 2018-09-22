@@ -4,6 +4,6 @@ import outputValue from './output-value'
 vhCheck({
   redefineVh: true,
   force: true,
-  updateOnScroll: true,
+  updateOnTouch: true,
   onUpdate: outputValue('1vh'),
 })

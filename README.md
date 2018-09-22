@@ -5,7 +5,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [the problem](#the-problem)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
@@ -178,8 +177,9 @@ main {
 vhCheck({
   cssVarName: 'vh-offset',
   force: false,
+  bind: true,
   redefineVh: false,
-  updateOnScroll: false,
+  updateOnTouch: false,
   onUpdate: function noop() {},
 })
 ```
@@ -198,6 +198,13 @@ Change the CSS var name
 
 Set the CSS var even if `100vh` computation is good
 
+#### bind
+
+**type:** `boolean`  
+**default:** `find`
+
+Automatically bind to `orientationchange` event
+
 #### redefineVh
 
 **type:** `boolean`  
@@ -207,7 +214,7 @@ Change the CSS var value.
 Instead of being the total size of the gap, it will be 1% of the real window size.  
 You can find more explanation in this [CSS Trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
 
-_⚠️ Important_
+⚠️ _Important_
 
 If you don't set a `cssVarName`, the CSS custom property will be named `vh`.  
 So your CSS should be:
@@ -219,16 +226,17 @@ So your CSS should be:
 }
 ```
 
-#### updateOnScroll
+#### updateOnTouch
 
 **type:** `boolean`  
 **default:** `false`
 
 Add an event listener on `touchmove` to recompute the sizes
 
-_⚠️ Important_
+⚠️ _Important_
 
-This can impact your website performances as changing sizes will make your browser [reflow](https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/)
+- This can impact your website performances as changing sizes will make your browser [reflow](https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/)
+- if `options.bind` is `false`, this will be ignored as well
 
 #### onUpdate
 
