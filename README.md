@@ -5,6 +5,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [the problem](#the-problem)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
@@ -21,8 +22,9 @@
   - [as an object](#as-an-object)
     - [cssVarName](#cssvarname)
     - [force](#force)
+    - [bind](#bind)
     - [redefineVh](#redefinevh)
-    - [updateOnScroll](#updateonscroll)
+    - [updateOnTouch](#updateontouch)
     - [onUpdate](#onupdate)
 - [about browser support](#about-browser-support)
 - [demo](#demo)
@@ -75,7 +77,7 @@ https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13
 <script>
   (function () {
     // initialize the test
-    var check = vhCheck('vh-test');
+    var test = vhCheck();
   }());
 </script>
 ```
@@ -88,7 +90,7 @@ npm install vh-check
 
 ```js
 var check = require('vh-check')
-var vhTest = vhCheck() // return an object (see below)
+var test = vhCheck() // return an object (see below)
 ```
 
 ### as a ES module module
@@ -99,7 +101,7 @@ npm install vh-check
 
 ```js
 import vhCheck from 'vh-check'
-const check = vhCheck()
+const test = vhCheck()
 ```
 
 ### how it works
