@@ -1,6 +1,52 @@
 :root {
   --vh-offset: 0px;
+  --vh: 1vh;
 }
+.panel {
+  width: 50%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.panel--menu {
+  display: flex;
+  min-height: 75vh;
+  background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+}
+.panel--100vh {
+  height: 100vh;
+}
+.panel--content {
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+.panel--no-check {
+  clear: left;
+  width: 100%;
+  background-image: linear-gradient(to bottom, #c04848, #480048);
+  color: white;
+  font-size: calc(1.5vh + 1.5vw + 1.5vmin);
+}
+
+.menu__item {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-weight: 700;
+  font-size: calc(1vh + 1vw + 1vmin);
+}
+
+/* this will give the nav block it's height */
+.menu--100-vh-gap {
+  height: calc(100vh - var(--vh-offset));
+}
+.menu--redefine-vh {
+  height: calc(100 * var(--vh));
+}
+
 * {
   box-sizing: border-box;
 }
@@ -20,39 +66,30 @@ body::after {
   display: table;
   clear: both;
 }
-body > * {
-  width: 50%;
-  float: right;
-}
-p {
-  height: calc(100vh - var(--vh-offset));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  background: white;
-}
-.witness {
-  list-style: none;
-  float: right;
-  padding: 0;
-  margin: 0;
-  width: 50%;
 
-}
-.witness__panel {
-  height: 100vh;
+.menu {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
 }
-.witness__panel:first-child {
-  background: hsl(187, 100%, 95%);
+
+.menu__item a {
+  color: currentColor;
+  text-decoration: none;
 }
-.witness__panel:last-child {
-  background: hsl(187, 90%, 90%);
+.menu__item--active {
+  pointer-events: none;
+  color: white;
 }
-ul:not(.witness) {
-  margin-top: 2rem;
+.menu__item--active::before,
+.menu__item--active::after {
+  white-space: pre;
+}
+.menu__item--active::before {
+  content: '• ';
+}
+.menu__item--active::after {
+  content: ' •';
 }

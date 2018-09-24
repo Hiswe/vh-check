@@ -298,7 +298,7 @@ module.exports = function outputValue(name) {
     domCheckWrapper.innerHTML = message;
   };
 };
-},{}],"yQ00":[function(require,module,exports) {
+},{}],"ZNGm":[function(require,module,exports) {
 'use strict';
 
 var _vhCheck = require('../dist/vh-check.js');
@@ -312,8 +312,9 @@ var _outputValue2 = _interopRequireDefault(_outputValue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _vhCheck2.default)({
+  redefineVh: true,
   force: true,
   updateOnTouch: true,
-  onUpdate: (0, _outputValue2.default)('gap')
+  onUpdate: (0, _outputValue2.default)('1vh')
 });
-},{"../dist/vh-check.js":"e+W1","./output-value":"uBAa"}]},{},["yQ00"], null)
+},{"../dist/vh-check.js":"e+W1","./output-value":"uBAa"}]},{},["ZNGm"], null)
