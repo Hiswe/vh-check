@@ -5,7 +5,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [the problem](#the-problem)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
@@ -38,9 +37,6 @@
   - [related](#related)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-**⚠️ This documentation refers to the next release.**  
-Please read the [documentation on NPM](https://www.npmjs.com/package/vh-check) if you need the documentation for the actual release.
 
 ## the problem
 
