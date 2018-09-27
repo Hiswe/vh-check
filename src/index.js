@@ -1,7 +1,7 @@
 'use strict'
 
 import getOptions from './options'
-import * as events from './event-listerner'
+import * as events from './event-listener'
 
 function updateCssVar(cssVarName, result) {
   document.documentElement.style.setProperty(

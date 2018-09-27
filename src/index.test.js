@@ -4,7 +4,7 @@ import browserEnv from 'browser-env'
 
 import vhCheck from './index'
 import * as methods from './methods'
-import * as events from './event-listerner'
+import * as events from './event-listener'
 
 browserEnv({
   userAgent: `node.js`,
