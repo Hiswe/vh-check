@@ -1,8 +1,16 @@
 node_modules
 demo
+dist-demo
 src
 rollup.config.js
+ava.config.js
+gulpfile.js
+release-gh-page.js
 yarn-error.log
+yarn.lock
+MIGRATING.md
+CHANGELOG.md
 .vscode
 .prettierrc.js
 .nyc_output
+.cache
