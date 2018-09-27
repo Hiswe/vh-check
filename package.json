@@ -17,7 +17,7 @@
     "build:demo:redefine-vh": "parcel build demo/redefine-vh.js --out-dir dist-demo --out-file redefine-vh-bundle.js --no-source-maps --no-minify",
     "build:github": "npm run build:demo:js -- && npm run build:demo:html -- --gh-release",
     "prepublishOnly": "npm run toc && npm run build",
-    "release": "np",
+    "release": "np --no-cleanup --no-yarn",
     "release:github": "npm run build:github && node ./release-gh-page.js"
   },
   "repository": {
