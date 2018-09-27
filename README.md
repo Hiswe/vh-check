@@ -6,7 +6,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [the problem](#the-problem)
-  - [⚠️ Chrome & Firefox iOS](#-chrome--firefox-ios)
+  - [⚠️ Chrome iOS & Firefox iOS](#-chrome-ios--firefox-ios)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
   - [as a global variable](#as-a-global-variable)
@@ -55,7 +55,7 @@ As explained in the chrome post, that make sense but make it hard to have a full
 This script will measure the difference and put it in a CSS var.
 You can read more on this [css-trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/#article-header-id-0) by [Louis Hoebregts](https://css-tricks.com/author/louishoebregts/)
 
-<img src="issue-schema.svg" width="200" style="display: block; margin: 0 auto"/>
+<img src="https://unpkg.com/vh-check/issue-schema.svg" width="200" style="display: block; margin: 0 auto"/>
 
 ### ⚠️ Chrome iOS & Firefox iOS
 

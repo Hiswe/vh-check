@@ -6,9 +6,14 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [2.0.1](#201)
 - [2.0.0](#200)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 2.0.1
+
+- update readme
 
 ## 2.0.0
 

@@ -15,3 +15,4 @@ CHANGELOG.md
 .prettierrc.js
 .nyc_output
 .cache
+.gitattributes
