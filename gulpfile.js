@@ -6,6 +6,7 @@ const htmlBeautify = require('gulp-html-beautify')
 const args = require('yargs').argv
 
 const isGhRelease = args[`gh-release`] === true
+const DEMO = `dist-demo`
 
 console.log(`building for ${isGhRelease ? 'GITHUB' : 'local demo'}`)
 const html = () => {
@@ -19,11 +20,15 @@ const html = () => {
       })
     )
     .pipe(htmlBeautify({ indent_size: 2 }))
-    .pipe(gulp.dest(`dist-demo`))
+    .pipe(gulp.dest(DEMO))
 }
 
 const css = () => {
-  return gulp.src([`demo/*.css`]).pipe(gulp.dest(`dist-demo`))
+  return gulp.src([`demo/*.css`]).pipe(gulp.dest(DEMO))
 }
 
-exports.demo = gulp.parallel(html, css)
+const js = () => {
+  return gulp.src([`demo/ruler.js`]).pipe(gulp.dest(DEMO))
+}
+
+exports.demo = gulp.parallel(html, css, js)
