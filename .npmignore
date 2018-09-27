@@ -2,6 +2,7 @@ node_modules
 demo
 dist-demo
 src
+assets-source
 rollup.config.js
 ava.config.js
 gulpfile.js

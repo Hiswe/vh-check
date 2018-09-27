@@ -6,6 +6,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [the problem](#the-problem)
+  - [⚠️ Chrome & Firefox iOS](#-chrome--firefox-ios)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
   - [as a global variable](#as-a-global-variable)
@@ -53,6 +54,13 @@ As explained in the chrome post, that make sense but make it hard to have a full
 
 This script will measure the difference and put it in a CSS var.
 You can read more on this [css-trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/#article-header-id-0) by [Louis Hoebregts](https://css-tricks.com/author/louishoebregts/)
+
+<img src="issue-schema.svg" width="200" style="display: block; margin: 0 auto"/>
+
+### ⚠️ Chrome iOS & Firefox iOS
+
+**On iOS only**, Chrome & Firefox will change dynamically the size of `1vh` depending on the display of the address bar.
+Thus the library will return a `not needed` value.
 
 ## why not use viewport-units-buggyfill?
 
@@ -112,17 +120,22 @@ vh-check will return a full object:
 
 ```js
 {
-  isNeeded: false, // wether or not it's needed
-  value: 0, // the CSS var value
-  vh: 480, // a 100vh div size
-  windowHeight: 480, // same value as window.innerHeight
-  offset: 0, // difference between the above sizes
+  isNeeded: false,
+  // wether or not it's needed
+  value: 0,
+  // the CSS var value
+  vh: 480,
+  // a 100vh div size
+  windowHeight: 480,
+  // same value as window.innerHeight
+  offset: 0,
+  // difference between the above sizes
+  recompute: function computeDifference(),
   // call this to programmatically get all the values and set the CSS var
   // - this can be useful if you want to add your own listeners
   //   that will trigger a computation
-  recompute: function computeDifference(),
-  // call this to remove any window listeners created by vh-check
   unbind: function unbindVhCheckListeners(),
+  // call this to remove any window listeners created by vh-check
 },
 ```
 
@@ -137,14 +150,11 @@ vhCheck()
 ### in your CSS
 
 ```css
-:root {
-  --vh-offset: 0px;
-}
 main {
-  /* If you need to support browser without CSS var support (<= IE11) */
   height: 100vh;
+  /* If you need to support browser without CSS var support (<= IE11) */
+  height: calc(100vh - var(--vh-offset, 0px));
   /* enable vh fix */
-  height: calc(100vh - var(--vh-offset));
 }
 ```
 
@@ -152,7 +162,7 @@ main {
 
 ### as a string
 
-You can pass the CSS var name as a param to `vhCheck()` (default `vh-check`)
+You can pass the CSS var name as a param to `vhCheck()` (default `vh-offset`)
 
 ```js
 vhCheck('browser-address-bar')
@@ -212,9 +222,9 @@ Change the CSS var value.
 Instead of being the total size of the gap, it will be 1% of the real window size.  
 You can find more explanation in this [CSS Trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
 
-⚠️ _Important_
+⚠️ **Important**
 
-If you don't set a `cssVarName`, the CSS custom property will be named `vh`.  
+If you don't set a `cssVarName`, the CSS custom property will be named `vh` instead of `vh-offset`.  
 So your CSS should be:
 
 ```css
@@ -231,7 +241,7 @@ So your CSS should be:
 
 Add an event listener on `touchmove` to recompute the sizes
 
-⚠️ _Important_
+⚠️ **Important**
 
 - This can impact your website performances as changing sizes will make your browser [reflow](https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/)
 - if `options.bind` is `false`, this will be ignored as well
