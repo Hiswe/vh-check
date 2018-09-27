@@ -67,6 +67,23 @@ body::after {
   clear: both;
 }
 
+.ruler {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1.5rem;
+  transform: translateX(-50%);
+  height: 100vh;
+  background: white;
+}
+.ruler::before {
+  content: 'initial 100vh';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-0.25turn);
+  white-space: nowrap;
+}
 .menu {
   flex: 1 1 auto;
   display: flex;
