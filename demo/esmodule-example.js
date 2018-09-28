@@ -3,6 +3,5 @@ import outputValue from './output-value'
 
 vhCheck({
   force: true,
-  updateOnTouch: true,
   onUpdate: outputValue('gap'),
 })
