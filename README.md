@@ -5,8 +5,9 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [the problem](#the-problem)
-  - [⚠️ Chrome iOS & Firefox iOS](#-chrome-ios--firefox-ios)
+  - [WARN: Chrome iOS & Firefox iOS](#warn-chrome-ios--firefox-ios)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
   - [as a global variable](#as-a-global-variable)
@@ -57,10 +58,25 @@ You can read more on this [css-trick article](https://css-tricks.com/the-trick-t
 
 <img src="https://unpkg.com/vh-check/issue-schema.svg" width="200" style="display: block; margin: 0 auto"/>
 
-### ⚠️ Chrome iOS & Firefox iOS
+### WARN: Chrome iOS & Firefox iOS
 
-**On iOS only**, Chrome & Firefox will change dynamically the size of `1vh` depending on the display of the address bar.
+**On iOS only**, Chrome & Firefox will change dynamically the size of `1vh` depending on the display of the address bar.  
 Thus the library will return a `not needed` value.
+
+If you want to prevent your vh's components to resize, you could fix the size of the unit like this:
+
+```js
+vhCheck({
+  bind: false,
+  redefineVh: true,
+})
+```
+
+```css
+.my-div {
+  height: calc(var(--vh, 1vh) * 100);
+}
+```
 
 ## why not use viewport-units-buggyfill?
 
