@@ -7,7 +7,6 @@
 
 
 - [the problem](#the-problem)
-  - [WARN: Chrome iOS & Firefox iOS](#warn-chrome-ios--firefox-ios)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
   - [as a global variable](#as-a-global-variable)
@@ -31,7 +30,8 @@
 - [demo](#demo)
   - [github pages](#github-pages)
   - [local](#local)
-- [Other stuff](#other-stuff)
+- [other stuff](#other-stuff)
+  - [caveats](#caveats)
   - [changelog](#changelog)
   - [migrating](#migrating)
   - [run the tests](#run-the-tests)
@@ -57,26 +57,6 @@ This script will measure the difference and put it in a CSS var.
 You can read more on this [css-trick article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/#article-header-id-0) by [Louis Hoebregts](https://css-tricks.com/author/louishoebregts/)
 
 <img src="https://unpkg.com/vh-check/issue-schema.svg" width="200" style="display: block; margin: 0 auto"/>
-
-### WARN: Chrome iOS & Firefox iOS
-
-**On iOS only**, Chrome & Firefox will change dynamically the size of `1vh` depending on the display of the address bar.  
-Thus the library will return a `not needed` value.
-
-If you want to prevent your vh's components to resize, you could fix the size of the unit like this:
-
-```js
-vhCheck({
-  bind: false,
-  redefineVh: true,
-})
-```
-
-```css
-.my-div {
-  height: calc(var(--vh, 1vh) * 100);
-}
-```
 
 ## why not use viewport-units-buggyfill?
 
@@ -306,7 +286,27 @@ you'll need [node](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/en/)
 - `yarn demo`
 - go to: http://localhost:8080
 
-## Other stuff
+## other stuff
+
+### caveats
+
+**On iOS only**, Chrome & Firefox will change dynamically the size of `1vh` depending on the display of the address bar.  
+Thus the library will return a `not needed` value.
+
+If you want to prevent your vh's components to resize, you could fix the size of the unit like this:
+
+```js
+vhCheck({
+  bind: false,
+  redefineVh: true,
+})
+```
+
+```css
+.my-div {
+  height: calc(var(--vh, 1vh) * 100);
+}
+```
 
 ### changelog
 
