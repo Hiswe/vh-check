@@ -30,8 +30,8 @@
 - [demo](#demo)
   - [github pages](#github-pages)
   - [local](#local)
+- [caveats](#caveats)
 - [other stuff](#other-stuff)
-  - [caveats](#caveats)
   - [changelog](#changelog)
   - [migrating](#migrating)
   - [run the tests](#run-the-tests)
@@ -286,9 +286,7 @@ you'll need [node](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/en/)
 - `yarn demo`
 - go to: http://localhost:8080
 
-## other stuff
-
-### caveats
+## caveats
 
 **On iOS only**, Chrome & Firefox will change dynamically the size of `1vh` depending on the display of the address bar.  
 Thus the library will return a `not needed` value.
@@ -307,6 +305,8 @@ vhCheck({
   height: calc(var(--vh, 1vh) * 100);
 }
 ```
+
+## other stuff
 
 ### changelog
 
