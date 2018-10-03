@@ -11,10 +11,9 @@ function updateCssVar(cssVarName, result) {
 }
 
 function formatResult(sizes, options) {
-  return Object.assign({}, sizes, {
-    unbind: events.removeAll,
-    recompute: options.method,
-  })
+  sizes.unbind = events.removeAll
+  sizes.recompute = options.method
+  return sizes
 }
 
 export default function vhCheck(options) {

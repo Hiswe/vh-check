@@ -6,10 +6,15 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [2.0.2](#202)
 - [2.0.1](#201)
 - [2.0.0](#200)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 2.0.2
+
+- fix IE11 compatibility
 
 ## 2.0.1
 

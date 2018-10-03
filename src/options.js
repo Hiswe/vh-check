@@ -2,7 +2,7 @@
 
 import * as methods from './methods'
 
-var defaultOptions = {
+var defaultOptions = Object.freeze({
   cssVarName: 'vh-offset',
   // redefineVh: false,
   method: methods.computeDifference,
@@ -10,7 +10,7 @@ var defaultOptions = {
   bind: true,
   updateOnTouch: false,
   onUpdate: methods.noop,
-}
+})
 
 function isString(value) {
   return typeof value === 'string' && value !== ''
@@ -19,9 +19,14 @@ function isString(value) {
 export default function getOptions(options) {
   // old options handling: only redefine the CSS var name
   if (isString(options)) {
-    return Object.assign({}, defaultOptions, {
+    return {
       cssVarName: options,
-    })
+      method: defaultOptions.method,
+      force: defaultOptions.force,
+      bind: defaultOptions.bind,
+      updateOnTouch: defaultOptions.updateOnTouch,
+      onUpdate: defaultOptions.onUpdate,
+    }
   }
   // be sure to have a configuration object
   if (typeof options !== 'object') return defaultOptions
