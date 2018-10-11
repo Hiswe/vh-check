@@ -42,6 +42,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
 
       localRequire.resolve = resolve;
+      localRequire.cache = {};
 
       var module = cache[name] = new newRequire.Module(name);
 
@@ -103,17 +104,44 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"e+W1":[function(require,module,exports) {
+})({"../dist/vh-check.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 (function (global, factory) {
-  (typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.vhCheck = factory();
+  (typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.vhCheck = factory();
 })(this, function () {
   'use strict';
+  /*! *****************************************************************************
+  Copyright (c) Microsoft Corporation. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+  this file except in compliance with the License. You may obtain a copy of the
+  License at http://www.apache.org/licenses/LICENSE-2.0
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+  WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+  MERCHANTABLITY OR NON-INFRINGEMENT.
+    See the Apache Version 2.0 License for specific language governing permissions
+  and limitations under the License.
+  ***************************************************************************** */
 
-  // don't know a better way to get the size of a CSS 100vh…
+  var _assign = function __assign() {
+    _assign = Object.assign || function __assign(t) {
+      for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+
+        for (var p in s) {
+          if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+      }
+
+      return t;
+    };
+
+    return _assign.apply(this, arguments);
+  }; // don't know a better way to get the size of a CSS 100vh…
+
 
   function createTestElement() {
     var testElement = document.createElement('div');
@@ -124,9 +152,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   function removeTestElement(element) {
     document.documentElement.removeChild(element);
-  }
+  } //  in some browsers this will be bigger than window.innerHeight
 
-  //  in some browsers this will be bigger than window.innerHeight
+
   function checkSizes() {
     var vhTest = createTestElement();
     var windowHeight = window.innerHeight;
@@ -137,9 +165,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       vh: vh,
       windowHeight: windowHeight,
       offset: offset,
-      isNeeded: offset !== 0
+      isNeeded: offset !== 0,
+      value: 0
     };
-  }
+  } // export
+
 
   function noop() {}
 
@@ -155,130 +185,139 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     return sizes;
   }
 
-  var methods = /*#__PURE__*/Object.freeze({
+  var methods =
+  /*#__PURE__*/
+  Object.freeze({
     noop: noop,
     computeDifference: computeDifference,
     redefineVhUnit: redefineVhUnit
   });
 
-  var defaultOptions = {
+  function isString(text) {
+    return typeof text === "string" && text.length > 0;
+  }
+
+  function isFunction(f) {
+    return typeof f === "function";
+  }
+
+  var defaultOptions = Object.freeze({
     cssVarName: 'vh-offset',
-    // redefineVh: false,
+    redefineVh: false,
     method: computeDifference,
     force: false,
     bind: true,
     updateOnTouch: false,
     onUpdate: noop
-  };
-
-  function isString(value) {
-    return typeof value === 'string' && value !== '';
-  }
+  });
 
   function getOptions(options) {
     // old options handling: only redefine the CSS var name
     if (isString(options)) {
-      return Object.assign({}, defaultOptions, {
+      return _assign({}, defaultOptions, {
         cssVarName: options
       });
-    }
-    // be sure to have a configuration object
-    if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') return defaultOptions;
+    } // be sure to have a configuration object
 
-    // make sure we have the right options to start with
+
+    if (_typeof(options) !== 'object') return defaultOptions; // make sure we have the right options to start with
+
     var finalOptions = {
       force: options.force === true,
       bind: options.bind !== false,
       updateOnTouch: options.updateOnTouch === true,
-      onUpdate: typeof options.onUpdate === 'function' ? options.onUpdate : noop
-    };
+      onUpdate: isFunction(options.onUpdate) ? options.onUpdate : noop
+    }; // method change
 
-    // method change
     var redefineVh = options.redefineVh === true;
     finalOptions.method = methods[redefineVh ? 'redefineVhUnit' : 'computeDifference'];
-    finalOptions.cssVarName = isString(options.cssVarName) ? options.cssVarName : // when redefining vh unit we follow this article name convention
-    // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
-    redefineVh ? 'vh' : defaultOptions.cssVarName;
+    finalOptions.cssVarName = isString(options.cssVarName) ? options.cssVarName : redefineVh ?
+    /*
+    when redefining vh unit we follow this article name convention
+    https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+    */
+    'vh' : defaultOptions.cssVarName;
     return finalOptions;
-  }
+  } // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 
-  // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
+
   var passiveSupported = false;
   var eventListeners = [];
-
   /* istanbul ignore next */
+
   try {
-    var options = Object.defineProperty({}, 'passive', {
+    var options = Object.defineProperty({}, "passive", {
       get: function get() {
         passiveSupported = true;
       }
     });
-
-    window.addEventListener('test', options, options);
-    window.removeEventListener('test', options, options);
+    window.addEventListener("test", options, options);
+    window.removeEventListener("test", options, options);
   } catch (err) {
     passiveSupported = false;
   }
 
   function addListener(eventName, callback) {
-    eventListeners.push({ eventName: eventName, callback: callback });
-    window.addEventListener(eventName, callback,
+    eventListeners.push({
+      eventName: eventName,
+      callback: callback
+    });
+    window.addEventListener(eventName, callback
     /* istanbul ignore next */
-    passiveSupported ? { passive: true } : false);
+    , passiveSupported ? {
+      passive: true
+    } : false);
   }
 
   function removeAll() {
-    eventListeners.forEach(function eventConfiguration(config) {
+    eventListeners.forEach(function (config) {
       window.removeEventListener(config.eventName, config.callback);
     });
     eventListeners = [];
   }
 
   function updateCssVar(cssVarName, result) {
-    document.documentElement.style.setProperty('--' + cssVarName, result.value + 'px');
+    document.documentElement.style.setProperty("--" + cssVarName, result.value + "px");
   }
 
   function formatResult(sizes, options) {
-    return Object.assign({}, sizes, {
+    return _assign({}, sizes, {
       unbind: removeAll,
       recompute: options.method
     });
   }
 
   function vhCheck(options) {
-    options = Object.freeze(getOptions(options));
-    var result = formatResult(options.method(), options);
+    var config = Object.freeze(getOptions(options));
+    var result = formatResult(config.method(), config); // usefulness check
 
-    // usefulness check
-    if (!result.isNeeded && !options.force) {
+    if (!result.isNeeded && !config.force) {
       return result;
     }
-    updateCssVar(options.cssVarName, result);
-    options.onUpdate(result);
 
-    // enabled byt default
-    if (!options.bind) return result;
+    updateCssVar(config.cssVarName, result);
+    config.onUpdate(result); // enabled by default
+
+    if (!config.bind) return result;
 
     function onWindowChange() {
       window.requestAnimationFrame(function () {
-        var sizes = options.method();
-        updateCssVar(options.cssVarName, sizes);
-        options.onUpdate(formatResult(sizes, options));
+        var sizes = config.method();
+        updateCssVar(config.cssVarName, sizes);
+        config.onUpdate(formatResult(sizes, config));
       });
-    }
+    } // be sure we don't duplicates events listeners
 
-    // be sure we don't duplicates events listeners
-    result.unbind();
 
-    // listen for orientation change
+    result.unbind(); // listen for orientation change
     // - this can't be configured
     // - because it's convenient and not a real performance bottleneck
-    addListener('orientationchange', onWindowChange);
 
-    // listen to touch move for scrolling
+    addListener('orientationchange', onWindowChange); // listen to touch move for scrolling
     // – disabled by default
     // - listening to scrolling can be expansive…
-    if (options.updateOnTouch) {
+
+    if (config.updateOnTouch) {
       addListener('touchmove', onWindowChange);
     }
 
@@ -287,7 +326,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   return vhCheck;
 });
-},{}],"uBAa":[function(require,module,exports) {
+},{}],"output-value.js":[function(require,module,exports) {
 module.exports = function outputValue(name) {
   return function (test) {
     console.log(test);
@@ -298,23 +337,18 @@ module.exports = function outputValue(name) {
     domCheckWrapper.innerHTML = message;
   };
 };
-},{}],"ZNGm":[function(require,module,exports) {
-'use strict';
+},{}],"redefine-vh.js":[function(require,module,exports) {
+"use strict";
 
-var _vhCheck = require('../dist/vh-check.js');
+var _vhCheck = _interopRequireDefault(require("../dist/vh-check.js"));
 
-var _vhCheck2 = _interopRequireDefault(_vhCheck);
-
-var _outputValue = require('./output-value');
-
-var _outputValue2 = _interopRequireDefault(_outputValue);
+var _outputValue = _interopRequireDefault(require("./output-value"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _vhCheck2.default)({
+(0, _vhCheck.default)({
   redefineVh: true,
   force: true,
-  updateOnTouch: true,
-  onUpdate: (0, _outputValue2.default)('1vh')
+  onUpdate: (0, _outputValue.default)('1vh')
 });
-},{"../dist/vh-check.js":"e+W1","./output-value":"uBAa"}]},{},["ZNGm"], null)
+},{"../dist/vh-check.js":"../dist/vh-check.js","./output-value":"output-value.js"}]},{},["redefine-vh.js"], null)
