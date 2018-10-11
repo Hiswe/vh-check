@@ -10,7 +10,7 @@
     "toc": "doctoc *.md --github --notitle",
     "build": "del dist && rollup --config",
     "build:demo": "npm run build && del dist-demo && gulp demo",
-    "build:github": "build:demo -- --gh-release",
+    "build:github": "npm run build:demo -- --gh-release",
     "prepublishOnly": "npm run toc && npm run build",
     "release": "np --no-cleanup --no-yarn",
     "release:github": "del dist-demo && npm run build:github && gh-pages -d dist-demo",
