@@ -1,7 +1,7 @@
 {
   "name": "vh-check",
   "version": "2.0.2",
-  "description": "iOS vh buggyfill",
+  "description": "vh unit buggyfill",
   "main": "dist/vh-check.js",
   "scripts": {
     "start": "npm run build:demo && http-server ./dist-demo -c-1",
@@ -13,7 +13,8 @@
     "build:github": "build:demo -- --gh-release",
     "prepublishOnly": "npm run toc && npm run build",
     "release": "np --no-cleanup --no-yarn",
-    "release:github": "del dist-demo && npm run build:github && gh-pages -d dist-demo"
+    "release:github": "del dist-demo && npm run build:github && gh-pages -d dist-demo",
+    "size": "gulp size"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "gh-pages": "^2.0.0",
     "gulp": "^4.0.0",
     "gulp-pug": "^4.0.1",
+    "gulp-size": "^3.0.0",
     "http-server": "^0.11.1",
     "js-beautify": "^1.8.6",
     "lodash.merge": "^4.6.1",

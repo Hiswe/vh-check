@@ -8,6 +8,7 @@ const browserify = require('browserify')
 const source = require('vinyl-source-stream')
 const through = require('through2')
 const beautify = require('js-beautify')
+const size = require('gulp-size')
 
 function onError(err) {
   if (err.annotated) {
@@ -33,6 +34,12 @@ function beautifyHtml(opts = {}) {
 
   return through.obj(modifyFile)
 }
+
+const libMin = `dist/vh-check.min.js`
+const sOpts = { name: `regular`, showFiles: true }
+const libSizeMin = () => gulp.src(libMin).pipe(size(sOpts))
+const libSizeGzip = () => gulp.src(libMin).pipe(size({ ...sOpts, gzip: true }))
+const libSize = gulp.series(libSizeMin, libSizeGzip)
 
 const isGhRelease = args[`gh-release`] === true
 const DEMO = `dist-demo`
@@ -90,3 +97,5 @@ function jsEsModule() {
 const js = gulp.parallel(jsRuler, jsEsModule, jsCommonJs)
 
 exports.demo = gulp.parallel(html, css, js)
+
+gulp.task(`size`, libSize)
