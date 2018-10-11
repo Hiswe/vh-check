@@ -4,16 +4,16 @@
   "description": "iOS vh buggyfill",
   "main": "dist/vh-check.js",
   "scripts": {
-    "demo": "npm run build:demo && http-server ./dist-demo -c-1",
+    "start": "npm run build:demo && http-server ./dist-demo -c-1",
     "test": "nyc ava",
     "format-code": "prettier src/index.js --write src/index.js",
     "toc": "doctoc *.md --github --notitle",
     "build": "del dist && rollup --config",
-    "build:demo": "del dist-demo && gulp demo",
+    "build:demo": "npm run build && del dist-demo && gulp demo",
     "build:github": "build:demo -- --gh-release",
     "prepublishOnly": "npm run toc && npm run build",
     "release": "np --no-cleanup --no-yarn",
-    "release:github": "npm run build:github && node ./release-gh-page.js"
+    "release:github": "del dist-demo && npm run build:github && gh-pages -d dist-demo"
   },
   "repository": {
     "type": "git",

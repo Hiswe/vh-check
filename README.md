@@ -5,7 +5,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [the problem](#the-problem)
 - [why not use viewport-units-buggyfill?](#why-not-use-viewport-units-buggyfill)
 - [use](#use)
@@ -279,11 +278,11 @@ https://hiswe.github.io/vh-check/
 
 ### local
 
-you'll need [node](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/en/)
+you'll need [node](https://nodejs.org/en/)
 
 - clone the project
-- `yarn install`
-- `yarn demo`
+- `npm install`
+- `npm start`
 - go to: http://localhost:8080
 
 ## caveats
@@ -319,8 +318,8 @@ See [MIGRATING.md](https://github.com/Hiswe/vh-check/blob/master/MIGRATING.md)
 ### run the tests
 
 - clone the project
-- `yarn install`
-- `yarn test`
+- `npm install`
+- `npm test`
 
 ### thanks
 

@@ -1,12 +1,6 @@
-node_modules
-demo/commonjs-bundle.js
-demo/esmodule-bundle.js
-demo/vh-check.js
-npm-debug.log
-yarn-error.log
-/vh-check.js
-/vh-check.dev.js
-/dist
-/dist-demo
-.nyc_output
 .cache
+.nyc_output
+.rpt2_cache
+dist*
+node_modules
+npm-debug.log
