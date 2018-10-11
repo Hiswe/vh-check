@@ -1,4 +1,6 @@
 export default {
-  require: [`esm`],
+  compileEnhancements: false,
+  extensions: ['ts'],
+  require: ['./ava.typescript-register.js'],
   verbose: true,
 }

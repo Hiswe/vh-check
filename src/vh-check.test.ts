@@ -1,8 +1,9 @@
-import test from 'ava'
-import sinon from 'sinon'
-import browserEnv from 'browser-env'
+import anyTest, { TestInterface } from 'ava'
+import * as sinon from 'sinon'
+import * as browserEnv from 'browser-env'
 
-import vhCheck from './index'
+import vhCheck from './vh-check'
+import { Result } from './vh-check-types'
 import * as methods from './methods'
 import * as events from './event-listener'
 
@@ -13,7 +14,7 @@ browserEnv({
 
 // we need to run all the tests serially because:
 // • window & document are defined globally by browser-env
-// • since it's global, any attempt to parallelize tests will result in error.
+// • since it's global, any attempt to run tests in parallel will result in error.
 //   sinon.spy() will be called on already spied methods
 //   → and error
 // • rewire could be a way to define globals on the vh-check code…
@@ -29,6 +30,14 @@ function wait(time = 20) {
   return new Promise(resolve => setTimeout(resolve, time))
 }
 
+interface TestContext {
+  initialWindowHeight: number
+  spy: any
+  check?: Result
+}
+
+const test = anyTest as TestInterface<TestContext>
+
 test.beforeEach(t => {
   t.context.initialWindowHeight = window.innerHeight
   t.context.spy = sinon.spy(document.documentElement.style, `setProperty`)
@@ -36,11 +45,13 @@ test.beforeEach(t => {
 
 test.afterEach.always(t => {
   t.context.check.unbind()
+  // @ts-ignore
   document.documentElement.style.setProperty.restore()
+  // @ts-ignore
   window.innerHeight = t.context.initialWindowHeight
 })
 
-const CUSTOM_CSS_VAR_NAME = `foo`
+const CUSTOM_CSS_VAR_NAME: string = `foo`
 
 test.serial(`returned object`, t => {
   const check = vhCheck()
@@ -68,6 +79,7 @@ test.serial(`default behavior – needed`, t => {
 })
 
 test.serial(`default behavior – not needed`, async t => {
+  // @ts-ignore
   window.innerHeight = 0
   t.context.check = vhCheck()
   t.false(t.context.check.isNeeded)
@@ -78,8 +90,11 @@ test.serial(`default behavior – not needed`, async t => {
 })
 
 test.serial(`force test when not needed`, async t => {
+  // @ts-ignore
   window.innerHeight = 0
-  t.context.check = vhCheck({ force: true })
+  t.context.check = vhCheck({
+    force: true,
+  })
   t.false(t.context.check.isNeeded)
   t.true(t.context.spy.calledOnce, `set the CSS custom var`)
 })

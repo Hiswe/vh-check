@@ -9,9 +9,10 @@ src-demo
 .gitattributes
 .prettierrc.js
 ava.config.js
+ava.typescript-register.js
 gulpfile.js
 MIGRATING.md
 package.lock.json
 release-gh-page.js
 rollup.config.js
-yarn-error.log
+tsconfig.json

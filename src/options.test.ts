@@ -14,6 +14,7 @@ test(`compute difference – no options`, t => {
       method: methods.computeDifference,
       force: false,
       bind: true,
+      redefineVh: false,
       updateOnTouch: false,
       onUpdate: methods.noop,
     },
@@ -30,6 +31,7 @@ test(`compute difference – string option support`, t => {
       method: methods.computeDifference,
       force: false,
       bind: true,
+      redefineVh: false,
       updateOnTouch: false,
       onUpdate: methods.noop,
     },
@@ -108,6 +110,7 @@ test(`vh-unit – change method & var name`, t => {
 
 test(`vh-unit – misspell options`, t => {
   const options = getOptions({
+    // @ts-ignore
     redefinevh: `bar`,
     cssvarname: CUSTOM_CSS_VAR_NAME,
   })
@@ -127,6 +130,7 @@ test(`vh-unit – misspell options`, t => {
 
 test(`vh-unit – misspell redefinevh with css var`, t => {
   const options = getOptions({
+    // @ts-ignore
     redefinevh: `bar`,
     cssVarName: CUSTOM_CSS_VAR_NAME,
   })
@@ -197,6 +201,7 @@ test(`update callback`, t => {
     },
     `has the right return options`
   )
+  // @ts-ignore
   const badOptions = getOptions({
     onUpdate: `bad parameter`,
   })
