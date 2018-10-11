@@ -1,5 +1,6 @@
 .cache
 .nyc_output
+.rpt2_cache
 .vscode
 assets-source
 dist-demo
