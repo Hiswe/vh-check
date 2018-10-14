@@ -2,7 +2,7 @@
 
 get reliable CSS `vh` sizes for `1kb` gzipped
 
-[![npm version](https://badge.fury.io/js/vh-check.svg)](https://badge.fury.io/js/vh-check)
+[![npm version](https://badge.fury.io/js/vh-check.svg)](https://badge.fury.io/js/vh-check) [![Build Status](https://travis-ci.org/Hiswe/vh-check.svg?branch=master)](https://travis-ci.org/Hiswe/vh-check)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
