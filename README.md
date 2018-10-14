@@ -1,6 +1,6 @@
 # vh-check
 
-get reliable CSS `vh` sizes for `1kb` gzipped
+get reliable CSS `vh` sizes for [1kb gzipped](https://bundlephobia.com/result?p=vh-check)
 
 [![npm version](https://badge.fury.io/js/vh-check.svg)](https://badge.fury.io/js/vh-check) [![Build Status](https://travis-ci.org/Hiswe/vh-check.svg?branch=master)](https://travis-ci.org/Hiswe/vh-check)
 
