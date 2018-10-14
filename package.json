@@ -3,6 +3,7 @@
   "version": "2.0.4",
   "description": "vh unit buggyfill",
   "main": "dist/vh-check.js",
+  "types": "dist/vh-check.d.ts",
   "scripts": {
     "start": "npm run build:demo && http-server ./dist-demo -c-1",
     "test": "nyc ava",
