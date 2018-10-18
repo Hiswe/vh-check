@@ -2,10 +2,10 @@ import anyTest, { TestInterface } from 'ava'
 import * as sinon from 'sinon'
 import * as browserEnv from 'browser-env'
 
-import vhCheck from './vh-check'
-import { Result } from './vh-check-types'
-import * as methods from './methods'
-import * as events from './event-listener'
+import vhCheck from '../src/vh-check'
+import { Result } from '../src/types'
+import * as methods from '../src/methods'
+import * as events from '../src/event-listener'
 
 browserEnv({
   userAgent: `node.js`,

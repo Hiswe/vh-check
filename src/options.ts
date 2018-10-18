@@ -1,4 +1,4 @@
-import { Configuration } from './vh-check-types'
+import { Configuration } from './types'
 
 import * as methods from './methods'
 

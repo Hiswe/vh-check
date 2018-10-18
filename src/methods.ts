@@ -1,4 +1,4 @@
-import { ComputeSizeMethod, Sizes, ComputeCallback } from './vh-check-types'
+import { Sizes } from './types'
 
 // don't know a better way to get the size of a CSS 100vh…
 function createTestElement(): HTMLElement {
@@ -34,15 +34,15 @@ function checkSizes(): Sizes {
 
 // export
 
-export function noop<ComputeCallback>(): void {}
+export function noop(): void {}
 
-export function computeDifference<ComputeSizeMethod>(): Sizes {
+export function computeDifference(): Sizes {
   const sizes = checkSizes()
   sizes.value = sizes.offset
   return sizes
 }
 
-export function redefineVhUnit<ComputeSizeMethod>(): Sizes {
+export function redefineVhUnit(): Sizes {
   const sizes = checkSizes()
   sizes.value = sizes.windowHeight * 0.01
   return sizes

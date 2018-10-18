@@ -1,6 +1,6 @@
 'use strict'
 
-import { Configuration, Sizes, Result } from './vh-check-types'
+import { Configuration, Sizes, Result } from './types'
 import getOptions from './options'
 import * as events from './event-listener'
 
@@ -20,8 +20,8 @@ function formatResult(sizes: Sizes, options: Configuration): Result {
 }
 
 export default function vhCheck(options?: string | Configuration): Result {
-  const config: Configuration = Object.freeze(getOptions(options))
-  const result: Result = formatResult(config.method(), config)
+  const config = Object.freeze(getOptions(options))
+  const result = formatResult(config.method(), config)
 
   // usefulness check
   if (!result.isNeeded && !config.force) {

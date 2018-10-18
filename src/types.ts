@@ -1,4 +1,4 @@
-export type Callback = (...arg: any) => void
+export type UnbindFunction = () => void
 
 export type ComputeCallback = (result?: Result) => void
 
@@ -23,6 +23,6 @@ export interface Configuration {
 }
 
 export interface Result extends Sizes {
-  unbind: Callback
+  unbind: UnbindFunction
   recompute: ComputeSizeMethod
 }

@@ -1,12 +1,10 @@
-import { Callback } from './vh-check-types'
-
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 let passiveSupported: boolean = false
 let eventListeners: EventDescription[] = []
 
 interface EventDescription {
   eventName: string
-  callback: Callback
+  callback: EventListener
 }
 
 /* istanbul ignore next */
@@ -23,14 +21,15 @@ try {
   passiveSupported = false
 }
 
-export function addListener(eventName: string, callback: Callback) {
+export function addListener(eventName: string, callback: EventListener) {
   eventListeners.push({
-    eventName: eventName,
-    callback: callback,
+    eventName,
+    callback,
   })
   window.addEventListener(
     eventName,
-    callback /* istanbul ignore next */,
+    callback,
+    /* istanbul ignore next */
     passiveSupported ? { passive: true } : false
   )
 }

@@ -1,7 +1,7 @@
 import test from 'ava'
 
-import getOptions from './options'
-import * as methods from './methods'
+import getOptions from '../src/options'
+import * as methods from '../src/methods'
 
 const CUSTOM_CSS_VAR_NAME = `foo`
 
