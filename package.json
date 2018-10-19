@@ -1,6 +1,6 @@
 {
   "name": "vh-check",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "vh unit buggyfill",
   "main": "dist/vh-check.js",
   "types": "dist/vh-check.d.ts",
