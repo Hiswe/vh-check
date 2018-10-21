@@ -5,7 +5,8 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
+- [2.0.5](#205)
+- [2.0.4](#204)
 - [2.0.3](#203)
 - [2.0.2](#202)
 - [2.0.1](#201)
@@ -13,9 +14,17 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## 2.0.5
+
+- fix types
+
+## 2.0.4
+
+- clean npm files
+
 ## 2.0.3
 
-- typescript
+- convert to typescript
 
 ## 2.0.2
 
