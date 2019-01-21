@@ -206,7 +206,7 @@ Set the CSS var even if `100vh` computation is good
 #### bind
 
 **type:** `boolean`  
-**default:** `find`
+**default:** `true`
 
 Automatically bind to `orientationchange` event
 
